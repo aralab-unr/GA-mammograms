@@ -24,7 +24,20 @@ pip install sklearn
 7. install h5py
 pip install h5py
 
+8. set python path
+export PYTHONPATH=$PYTHONPATH:/home/adarshsehgal/workspace/GA-mammograms
+
 cd workspace/GA-mammograms/ddsm_train/
 
-MAIN SCRIPT FILE: train_image_clf_inbreast.sh
+=========================================================================================
+Some IMPORTANT points:
+1. MAIN SCRIPT FILE: train_image_clf_inbreast.sh
 ./train_image_clf_inbreast.sh
+
+2. white_list_formats = {'png', 'jpg', 'jpeg', 'bmp'}
+    only these format images can be used for train/test/val
+
+3. train/test/val folders should have folders named 'neg' (meaning negative) and 'pos' (meaning positive)
+    these are classes, names of which are inserted in variable name called '--class-list'
+
+========================================================================================
