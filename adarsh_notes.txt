@@ -52,6 +52,7 @@ Some IMPORTANT points:
 6. Use inbreast_preprocess_script.py to convert DICOM to PNG images
 
 7. --batch-size should be changed based on number of images used for testing, default was set to 4
+--all-layer-epochs controls how many epochs you want to run the training for
 ========================================================================================
 
 How to run the code:

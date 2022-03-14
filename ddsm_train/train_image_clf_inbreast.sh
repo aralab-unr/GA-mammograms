@@ -35,12 +35,12 @@ python image_clf_train.py \
     --fc-layers 2 \
     --batch-size 4 \
     --train-bs-multiplier 0.5 \
-	--augmentation \
+	--no-augmentation \
 	--class-list neg pos \
 	--nb-epoch 0 \
-    --all-layer-epochs 4 \
-    --load-val-ram \
-    --load-train-ram \
+    --all-layer-epochs 50 \
+    --no-load-val-ram \
+    --no-load-train-ram \
     --optimizer adam \
     --weight-decay 0.001 \
     --hidden-dropout 0.0 \
