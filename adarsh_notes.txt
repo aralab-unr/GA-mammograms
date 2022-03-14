@@ -53,6 +53,8 @@ Some IMPORTANT points:
 
 7. --batch-size should be changed based on number of images used for testing, default was set to 4
 --all-layer-epochs controls how many epochs you want to run the training for
+
+8. Use inbreastbuilder.m/inbreastbuilder.py with read_mixed_csv.m/read_mixed_csv.py files to process inbreast database
 ========================================================================================
 
 How to run the code:

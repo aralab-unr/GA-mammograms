@@ -33,12 +33,12 @@ python image_clf_train.py \
     --hm-pool-size 5 5 \
     --fc-init-units 64 \
     --fc-layers 2 \
-    --batch-size 4 \
+    --batch-size 2 \
     --train-bs-multiplier 0.5 \
 	--no-augmentation \
 	--class-list neg pos \
 	--nb-epoch 0 \
-    --all-layer-epochs 50 \
+    --all-layer-epochs 4 \
     --no-load-val-ram \
     --no-load-train-ram \
     --optimizer adam \
