@@ -49,3 +49,17 @@ Some IMPORTANT points:
 
 6. Use inbreast_preprocess_script.py to convert DICOM to PNG images
 ========================================================================================
+
+How to run the code:
+1. Activate virtual env
+cd virtualenv/
+source py-keras/bin/activate
+
+2.  set python path
+export PYTHONPATH=$PYTHONPATH:/home/adarshsehgal/workspace/GA-mammograms
+
+3. Go to code directory
+cd workspace/GA-mammograms/ddsm_train/
+
+4. Execute the script
+./train_image_clf_inbreast.sh
