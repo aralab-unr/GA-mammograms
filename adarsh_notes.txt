@@ -27,7 +27,7 @@ pip install sklearn
 pip install h5py
 
 8. set python path
-export PYTHONPATH=$PYTHONPATH:/home/adarshsehgal/workspace/GA-mammograms
+export PYTHONPATH=$PYTHONPATH:/home/adarsh/workspace/GA-mammograms
 
 cd workspace/GA-mammograms/ddsm_train/
 
@@ -50,6 +50,8 @@ Some IMPORTANT points:
     Positive - 4/5/6
 
 6. Use inbreast_preprocess_script.py to convert DICOM to PNG images
+
+7. --batch-size should be changed based on number of images used for testing, default was set to 4
 ========================================================================================
 
 How to run the code:
@@ -58,7 +60,7 @@ cd virtualenv/
 source py-keras/bin/activate
 
 2.  set python path
-export PYTHONPATH=$PYTHONPATH:/home/adarshsehgal/workspace/GA-mammograms
+export PYTHONPATH=$PYTHONPATH:/home/adarsh/workspace/GA-mammograms
 
 3. Go to code directory
 cd workspace/GA-mammograms/ddsm_train/
