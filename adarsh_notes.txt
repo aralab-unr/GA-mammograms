@@ -40,4 +40,12 @@ Some IMPORTANT points:
 3. train/test/val folders should have folders named 'neg' (meaning negative) and 'pos' (meaning positive)
     these are classes, names of which are inserted in variable name called '--class-list'
 
+4. Inbreast dataset link
+    https://drive.google.com/file/d/19n-p9p9C0eCQA1ybm6wkMo-bbeccT_62/view
+
+5. Use inbreast_preprocess_script.py, to split the dicom images to positive/negative images based on Bi-Rads assessment categories
+    Negative - 1/2
+    Positive - 4/5/6
+
+6. Use inbreast_preprocess_script.py to convert DICOM to PNG images
 ========================================================================================
