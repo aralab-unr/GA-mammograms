@@ -1,7 +1,9 @@
 Some setup notes:
 
 1. Create virtual env
+mkdir virtualenv
 cd virtualenv/
+sudo apt install virtualenv
 virtualenv -p python py-keras
 source py-keras/bin/activate
 pip install -q -U pip setuptools wheel
