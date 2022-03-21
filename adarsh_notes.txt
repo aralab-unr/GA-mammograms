@@ -66,6 +66,7 @@ source py-keras/bin/activate
 export PYTHONPATH=$PYTHONPATH:/home/adarsh/workspace/GA-mammograms
 
 3. Go to code directory
+cd
 cd workspace/GA-mammograms/ddsm_train/
 
 4. Execute the script
