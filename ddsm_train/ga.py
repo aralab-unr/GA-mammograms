@@ -69,8 +69,8 @@ def fitness_function(genome):
     with open('logs_common.txt', 'a') as output:
         output.write("======Setting Parameters value=========" + "\n")
         output.write("pos_cls_weight = " + str(pos_cls_weight))
-        output.write("weight_decay = " + str(weight_decay))
-        output.write("weight_decay2 = " + str(weight_decay2))
+        output.write(" || weight_decay = " + str(weight_decay))
+        output.write(" || weight_decay2 = " + str(weight_decay2))
         output.write(" || neg_cls_weight = " + str(neg_cls_weight) + "\n")
 
     # query = "export NUM_CPU_CORES=6 \ " \
@@ -150,7 +150,7 @@ def fitness_function(genome):
             bestauc = auc
         if auc > bestauc:
             with open('BestParameters.txt', 'a') as output:
-                output.write("Epochs taken to converge : " + str(bestauc) + "\n")
+                output.write("AUC : " + str(bestauc) + "\n")
                 output.write("pos_cls_weight = " + str(pos_cls_weight) + "\n")
                 output.write("neg_cls_weight = " + str(neg_cls_weight) + "\n")
                 output.write("weight_decay = " + str(weight_decay) + "\n")
