@@ -8,7 +8,7 @@ RESUME_FROM="CBIS-DDSM/Combined_full_ROI/inbreast_vgg16_[512-512-1024]x2_hybrid.
 BEST_MODEL="INbreast/train_dat_mod/final_hybrid_model.h5"
 FINAL_MODEL="NOSAVE"
 
-export NUM_CPU_CORES=4
+export NUM_CPU_CORES=6
 
 # 255/65535 = 0.003891.
 python image_clf_train.py \

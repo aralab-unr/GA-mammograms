@@ -2,8 +2,8 @@ import cv2
 import os
 import pydicom
 
-inputdir = '/home/adarsh/Adarsh/INbreast Release 1.0/AllDICOMs/'
-outdir = '/home/adarsh/Adarsh/INbreast Release 1.0/png images/'
+inputdir = '/home/adarsh/Adarsh/INbreast Release 1.0/processed images/dicom/pos/'
+outdir = '/home/adarsh/Adarsh/INbreast Release 1.0/processed images/png/pos/'
 #os.mkdir(outdir)
 
 test_list = [ f for f in  os.listdir(inputdir)]
