@@ -90,6 +90,8 @@ STEPS TO PROGRAM GA-E2E ALGORITHM:
     test sub-set: 4 neg, 4 pos
 
 4. Program ga.py to create a string of query to be run for fitness function
+    - return of fitness function is AUC because we want to maximize AUC
+    - consider AUC as the one from test set
 =====================================================================================
 
 EXPERIMENTS PERFORMED
@@ -120,3 +122,5 @@ PARAMETERS FOR GA OPTIMIZATION:
 
 -pos-cls-weight, range 0-1, 3 decimal places, default: 1.0
 -neg-cls-weight, range 0-1, 3 decimal places, default: 1.0
+-weight-decay, range 0-1, 3 decimal places, default: 0.001
+-weight-decay2, range 0-1, 3 decimal places, default: 0.01

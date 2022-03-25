@@ -41,6 +41,14 @@ def fitness_function(genome):
     if neg_cls_weight >= 1:
         neg_cls_weight = 0.999
 
+    weight_decay = decode_function(genome[22:33])
+    if weight_decay >= 1:
+        weight_decay = 0.999
+
+    weight_decay2 = decode_function(genome[34:44])
+    if weight_decay2 >= 1:
+        weight_decay2 = 0.999
+
     # Q_lr = decode_function(genome[22:33])
     # # if Q_lr >= 1:
     # #     Q_lr = 0.999 #1
@@ -61,6 +69,8 @@ def fitness_function(genome):
     with open('logs_common.txt', 'a') as output:
         output.write("======Setting Parameters value=========" + "\n")
         output.write("pos_cls_weight = " + str(pos_cls_weight))
+        output.write("weight_decay = " + str(weight_decay))
+        output.write("weight_decay2 = " + str(weight_decay2))
         output.write(" || neg_cls_weight = " + str(neg_cls_weight) + "\n")
 
     # query = "export NUM_CPU_CORES=6 \ " \
@@ -95,9 +105,9 @@ def fitness_function(genome):
     --no-load-val-ram \
     --no-load-train-ram \
     --optimizer adam \
-    --weight-decay 0.001 \
+    --weight-decay " + str(weight_decay) + "\
     --hidden-dropout 0.0 \
-    --weight-decay2 0.01 \
+    --weight-decay2 " + str(weight_decay2) + "\
     --hidden-dropout2 0.0 \
     --init-learningrate 0.0001 \
     --all-layer-multiplier 0.01 \
@@ -128,13 +138,13 @@ def fitness_function(genome):
     programExecutionTime = time.time() - start_time  # seconds
     programExecutionTime = programExecutionTime / (60)  # minutes
     with open('logs_common.txt', 'a') as output:
-        output.write("Epochs taken " + str(epochs) + "\n")
+        output.write("AUC calculated " + str(auc) + "\n")
         output.write("======Run " + str(timesEvaluated) + " took " + str(
             programExecutionTime) + " minutes to complete=========" + "\n")
 
     global bestauc
     if bestauc == -1:
-        bestauc = epochs
+        bestauc = auc
     if auc > bestauc:
         if auc > bestauc:
             bestauc = auc
@@ -143,6 +153,8 @@ def fitness_function(genome):
                 output.write("Epochs taken to converge : " + str(bestauc) + "\n")
                 output.write("pos_cls_weight = " + str(pos_cls_weight) + "\n")
                 output.write("neg_cls_weight = " + str(neg_cls_weight) + "\n")
+                output.write("weight_decay = " + str(weight_decay) + "\n")
+                output.write("weight_decay2 = " + str(weight_decay2) + "\n")
                 output.write("\n")
                 output.write("=================================================")
                 output.write("\n")
@@ -163,7 +175,7 @@ def decode_function(genome_partial):
 
 # Configure the algorithm:
 population_size = 50  # 30
-genome_length = 66
+genome_length = 44
 ga = GeneticAlgorithm(fitness_function)
 ga.generate_binary_population(size=population_size, genome_length=genome_length)
 
@@ -193,8 +205,8 @@ print(best_genome)
 print("It's decoded value is")
 print("pos_cls_weight = " + str(decode_function(best_genome[0:10])))
 print("neg_cls_weight = " + str(decode_function(best_genome[11:22])))
-# print("Q_learning = " + str(decode_function(best_genome[23:33])))
-# print("pi_learning = " + str(decode_function(best_genome[34:44])))
+print("weight_decay = " + str(decode_function(best_genome[23:33])))
+print("weight_decay2 = " + str(decode_function(best_genome[34:44])))
 # print("random_epsilon = " + str(decode_function(best_genome[45:55])))
 # print("noise_epsilon = " + str(decode_function(best_genome[56:66])))
 
