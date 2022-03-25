@@ -204,6 +204,8 @@ def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
     #     pickle_safe=True if nb_worker > 1 else False)
     test_auc = DMAucModelCheckpoint.calc_test_auc(
         test_generator, image_model, test_samples=test_samples)
+    with open('reward.txt', 'w') as output:
+        output.write(str(test_auc))
     print "AUROC on test set:", test_auc
 
 
