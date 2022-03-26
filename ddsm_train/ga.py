@@ -145,10 +145,8 @@ def fitness_function(genome):
     global bestauc
     if bestauc == -1:
         bestauc = auc
-    if auc > bestauc:
-        if auc > bestauc:
+    if auc >= bestauc:
             bestauc = auc
-        if auc > bestauc:
             with open('BestParameters.txt', 'a') as output:
                 output.write("AUC : " + str(bestauc) + "\n")
                 output.write("weight_decay = " + str(weight_decay) + "\n")
