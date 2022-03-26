@@ -66,8 +66,7 @@ source py-keras/bin/activate
 export PYTHONPATH=$PYTHONPATH:/home/adarsh/workspace/GA-mammograms
 
 3. Go to code directory
-cd
-cd workspace/GA-mammograms/ddsm_train/
+cd && cd workspace/GA-mammograms/ddsm_train/
 
 4. Execute the script
 ./train_image_clf_inbreast.sh
@@ -115,6 +114,14 @@ EXPERIMENTS PERFORMED
     -test AUC=0.4375
     -num_cpu=4
     -160 s per epoch
+
+3. pos/neg having only CC views of different patients
+    -train sub-set: 4 neg, 4 pos
+    -val sub-set: 2 neg, 2 pos
+    -test sub-set: 4 neg, 4 pos
+    -Training uses 4 epochs
+    -init-learningrate 0.999
+    -RESULT: change in init-learningrate, changes AUC
 
 =====================================================================================
 

@@ -49,28 +49,23 @@ def fitness_function(genome):
     if weight_decay2 >= 1:
         weight_decay2 = 0.999
 
-    # Q_lr = decode_function(genome[22:33])
-    # # if Q_lr >= 1:
-    # #     Q_lr = 0.999 #1
-    # Q_lr = 0.001
-    # pi_lr = decode_function(genome[34:44])
-    # # if pi_lr >= 1:
-    # #     pi_lr = 0.999 #1
-    # pi_lr = 0.001
-    # random_eps = decode_function(genome[45:55])
-    # if random_eps >= 1:
-    #     random_eps = 0.999  # 1
-    # noise_eps = decode_function(genome[56:66])
-    # if noise_eps >= 1:
-    #     noise_eps = 0.999  # 1
+    init_lr = decode_function(genome[45:55])
+    if init_lr >= 1:
+        init_lr = 0.999  # 1
 
-    epochs_default = 5  # 50
+    all_layer_multiplier = decode_function(genome[56:66])
+    if all_layer_multiplier >= 1:
+        all_layer_multiplier = 0.999  # 1
+
+    epochs_default = 4  # 50
 
     with open('logs_common.txt', 'a') as output:
         output.write("======Setting Parameters value=========" + "\n")
-        output.write("pos_cls_weight = " + str(pos_cls_weight))
-        output.write(" || weight_decay = " + str(weight_decay))
+        output.write("weight_decay = " + str(weight_decay))
         output.write(" || weight_decay2 = " + str(weight_decay2))
+        output.write(" || init_lr = " + str(init_lr))
+        output.write(" || all_layer_multiplier = " + str(all_layer_multiplier))
+        output.write(" || pos_cls_weight = " + str(pos_cls_weight))
         output.write(" || neg_cls_weight = " + str(neg_cls_weight) + "\n")
 
     # query = "export NUM_CPU_CORES=6 \ " \
@@ -109,8 +104,8 @@ def fitness_function(genome):
     --hidden-dropout 0.0 \
     --weight-decay2 " + str(weight_decay2) + "\
     --hidden-dropout2 0.0 \
-    --init-learningrate 0.0001 \
-    --all-layer-multiplier 0.01 \
+    --init-learningrate " + str(init_lr) + "\
+    --all-layer-multiplier " + str(all_layer_multiplier) + "\
 	--lr-patience 2 \
 	--es-patience 10 \
 	--auto-batch-balance \
@@ -126,7 +121,10 @@ def fitness_function(genome):
 
     file = open('reward.txt', 'r')
 
-    # one run is expected to converge before epochs_efault
+    # after reading auc value, reset the reward file to avoid incorrect auc being saved
+    if os.path.exists("reward.txt"):
+        os.remove("reward.txt")
+
     # if it does not converge, either add condition here, or make number of epochs as dynamic
 
     auc = float(file.read())
@@ -151,10 +149,12 @@ def fitness_function(genome):
         if auc > bestauc:
             with open('BestParameters.txt', 'a') as output:
                 output.write("AUC : " + str(bestauc) + "\n")
-                output.write("pos_cls_weight = " + str(pos_cls_weight) + "\n")
-                output.write("neg_cls_weight = " + str(neg_cls_weight) + "\n")
                 output.write("weight_decay = " + str(weight_decay) + "\n")
                 output.write("weight_decay2 = " + str(weight_decay2) + "\n")
+                output.write("init_lr = " + str(init_lr) + "\n")
+                output.write("all_layer_multiplier = " + str(all_layer_multiplier) + "\n")
+                output.write("pos_cls_weight = " + str(pos_cls_weight) + "\n")
+                output.write("neg_cls_weight = " + str(neg_cls_weight) + "\n")
                 output.write("\n")
                 output.write("=================================================")
                 output.write("\n")
@@ -175,7 +175,7 @@ def decode_function(genome_partial):
 
 # Configure the algorithm:
 population_size = 50  # 30
-genome_length = 44
+genome_length = 66
 ga = GeneticAlgorithm(fitness_function)
 ga.generate_binary_population(size=population_size, genome_length=genome_length)
 
@@ -207,8 +207,8 @@ print("pos_cls_weight = " + str(decode_function(best_genome[0:10])))
 print("neg_cls_weight = " + str(decode_function(best_genome[11:22])))
 print("weight_decay = " + str(decode_function(best_genome[23:33])))
 print("weight_decay2 = " + str(decode_function(best_genome[34:44])))
-# print("random_epsilon = " + str(decode_function(best_genome[45:55])))
-# print("noise_epsilon = " + str(decode_function(best_genome[56:66])))
+print("init_lr = " + str(decode_function(best_genome[45:55])))
+print("all_layer_multiplier = " + str(decode_function(best_genome[56:66])))
 
 # If you want, you can have a look at the population:
 population = ga.population
