@@ -119,47 +119,51 @@ def fitness_function(genome):
     # calling training to calculate number of epochs required to reach close to maximum success rate
     os.system(query)
 
-    file = open('reward.txt', 'r')
-
-    # after reading auc value, reset the reward file to avoid incorrect auc being saved
     if os.path.exists("reward.txt"):
-        os.remove("reward.txt")
+        file = open('reward.txt', 'r')
 
-    # if it does not converge, either add condition here, or make number of epochs as dynamic
+        # after reading auc value, reset the reward file to avoid incorrect auc being saved
+        if os.path.exists("reward.txt"):
+            os.remove("reward.txt")
 
-    auc = float(file.read())
+        # if it does not converge, either add condition here, or make number of epochs as dynamic
 
-    if auc == None:
-        auc = 0
+        auc = float(file.read())
 
-    ##tracking time to execute one run
-    programExecutionTime = time.time() - start_time  # seconds
-    programExecutionTime = programExecutionTime / (60)  # minutes
-    with open('logs_common.txt', 'a') as output:
-        output.write("AUC calculated " + str(auc) + "\n")
-        output.write("======Run " + str(timesEvaluated) + " took " + str(
-            programExecutionTime) + " minutes to complete=========" + "\n")
+        if auc == None:
+            auc = 0
 
-    global bestauc
-    if bestauc == -1:
-        bestauc = auc
-    if auc > bestauc:
-        if auc > bestauc:
+        ##tracking time to execute one run
+        programExecutionTime = time.time() - start_time  # seconds
+        programExecutionTime = programExecutionTime / (60)  # minutes
+        with open('logs_common.txt', 'a') as output:
+            output.write("AUC calculated " + str(auc) + "\n")
+            output.write("======Run " + str(timesEvaluated) + " took " + str(
+                programExecutionTime) + " minutes to complete=========" + "\n")
+
+        global bestauc
+        if bestauc == -1:
             bestauc = auc
         if auc > bestauc:
-            with open('BestParameters.txt', 'a') as output:
-                output.write("AUC : " + str(bestauc) + "\n")
-                output.write("weight_decay = " + str(weight_decay) + "\n")
-                output.write("weight_decay2 = " + str(weight_decay2) + "\n")
-                output.write("init_lr = " + str(init_lr) + "\n")
-                output.write("all_layer_multiplier = " + str(all_layer_multiplier) + "\n")
-                output.write("pos_cls_weight = " + str(pos_cls_weight) + "\n")
-                output.write("neg_cls_weight = " + str(neg_cls_weight) + "\n")
-                output.write("\n")
-                output.write("=================================================")
-                output.write("\n")
+            if auc > bestauc:
+                bestauc = auc
+            if auc > bestauc:
+                with open('BestParameters.txt', 'a') as output:
+                    output.write("AUC : " + str(bestauc) + "\n")
+                    output.write("weight_decay = " + str(weight_decay) + "\n")
+                    output.write("weight_decay2 = " + str(weight_decay2) + "\n")
+                    output.write("init_lr = " + str(init_lr) + "\n")
+                    output.write("all_layer_multiplier = " + str(all_layer_multiplier) + "\n")
+                    output.write("pos_cls_weight = " + str(pos_cls_weight) + "\n")
+                    output.write("neg_cls_weight = " + str(neg_cls_weight) + "\n")
+                    output.write("\n")
+                    output.write("=================================================")
+                    output.write("\n")
 
-    print("Best auc so far : " + str(auc))
+        print("Best auc so far : " + str(bestauc))
+    # auc was not calculated for some reason and reward file doesn't exist
+    else:
+        auc = 0
     return auc
 
 
