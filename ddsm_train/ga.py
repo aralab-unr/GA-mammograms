@@ -129,7 +129,7 @@ def fitness_function(genome):
     # one run is expected to converge before epochs_efault
     # if it does not converge, either add condition here, or make number of epochs as dynamic
 
-    auc = int(file.read())
+    auc = float(file.read())
 
     if auc == None:
         auc = 0
