@@ -170,7 +170,7 @@ def decode_function(genome_partial):
             prod += 0
         else:
             prod += 2 ** abs(i - len(genome_partial) + 1)
-    return prod / 1000
+    return float(prod)/1000
 
 
 # Configure the algorithm:
