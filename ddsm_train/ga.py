@@ -126,44 +126,43 @@ def fitness_function(genome):
         if os.path.exists("reward.txt"):
             os.remove("reward.txt")
 
-        # if it does not converge, either add condition here, or make number of epochs as dynamic
-
         auc = float(file.read())
-
-        if auc == None:
-            auc = 0
-
-        ##tracking time to execute one run
-        programExecutionTime = time.time() - start_time  # seconds
-        programExecutionTime = programExecutionTime / (60)  # minutes
-        with open('logs_common.txt', 'a') as output:
-            output.write("AUC calculated " + str(auc) + "\n")
-            output.write("======Run " + str(timesEvaluated) + " took " + str(
-                programExecutionTime) + " minutes to complete=========" + "\n")
-
-        global bestauc
-        if bestauc == -1:
-            bestauc = auc
-        if auc > bestauc:
-            if auc > bestauc:
-                bestauc = auc
-            if auc > bestauc:
-                with open('BestParameters.txt', 'a') as output:
-                    output.write("AUC : " + str(bestauc) + "\n")
-                    output.write("weight_decay = " + str(weight_decay) + "\n")
-                    output.write("weight_decay2 = " + str(weight_decay2) + "\n")
-                    output.write("init_lr = " + str(init_lr) + "\n")
-                    output.write("all_layer_multiplier = " + str(all_layer_multiplier) + "\n")
-                    output.write("pos_cls_weight = " + str(pos_cls_weight) + "\n")
-                    output.write("neg_cls_weight = " + str(neg_cls_weight) + "\n")
-                    output.write("\n")
-                    output.write("=================================================")
-                    output.write("\n")
-
-        print("Best auc so far : " + str(bestauc))
     # auc was not calculated for some reason and reward file doesn't exist
     else:
         auc = 0
+
+    if auc == None:
+        auc = 0
+
+    ##tracking time to execute one run
+    programExecutionTime = time.time() - start_time  # seconds
+    programExecutionTime = programExecutionTime / (60)  # minutes
+    with open('logs_common.txt', 'a') as output:
+        output.write("AUC calculated " + str(auc) + "\n")
+        output.write("======Run " + str(timesEvaluated) + " took " + str(
+            programExecutionTime) + " minutes to complete=========" + "\n")
+
+    global bestauc
+    if bestauc == -1:
+        bestauc = auc
+    if auc > bestauc:
+        if auc > bestauc:
+            bestauc = auc
+        if auc > bestauc:
+            with open('BestParameters.txt', 'a') as output:
+                output.write("AUC : " + str(bestauc) + "\n")
+                output.write("weight_decay = " + str(weight_decay) + "\n")
+                output.write("weight_decay2 = " + str(weight_decay2) + "\n")
+                output.write("init_lr = " + str(init_lr) + "\n")
+                output.write("all_layer_multiplier = " + str(all_layer_multiplier) + "\n")
+                output.write("pos_cls_weight = " + str(pos_cls_weight) + "\n")
+                output.write("neg_cls_weight = " + str(neg_cls_weight) + "\n")
+                output.write("\n")
+                output.write("=================================================")
+                output.write("\n")
+
+    print("Best auc so far : " + str(bestauc))
+
     return auc
 
 
