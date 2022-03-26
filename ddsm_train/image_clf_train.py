@@ -42,7 +42,7 @@ def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
 
     # ======= Environmental variables ======== #
     random_seed = int(os.getenv('RANDOM_SEED', 12345))
-    nb_worker = int(os.getenv('NUM_CPU_CORES', 4))
+    nb_worker = int(os.getenv('NUM_CPU_CORES', 6))
     gpu_count = int(os.getenv('NUM_GPU_DEVICES', 1))
 
     # ========= Image generator ============== #
@@ -205,7 +205,7 @@ def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
     test_auc = DMAucModelCheckpoint.calc_test_auc(
         test_generator, image_model, test_samples=test_samples)
     with open('reward.txt', 'w') as output:
-        output.write(str(test_auc))
+        output.write(str(np.mean(test_auc)))
     print "AUROC on test set:", test_auc
 
 
