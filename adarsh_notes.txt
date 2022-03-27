@@ -131,6 +131,20 @@ EXPERIMENTS PERFORMED
     -init-learningrate 0.999
     -RESULT: change in init-learningrate, changes AUC
 
+4. Running my old GA with 6 parameters
+    - original AUC was 0.4375
+    - GA found AUC 0.5
+    - train sub-set: 4 neg, 4 pos
+    - val sub-set: 2 neg, 2 pos
+    - test sub-set: 4 neg, 4 pos
+    - Training uses 4 epochs
+    - NUM_GPU_CORE = 6
+    - plot generated for AUC vs times fitness function evaluated
+    - all parameters have ranges 0-0.999
+    - Limited images due to system limitations
+    - Code ran on ubuntu local machine
+    - Google colab did not support tensorflow v1.3, which is needed to run the code
+
 =====================================================================================
 
 PARAMETERS FOR GA OPTIMIZATION:

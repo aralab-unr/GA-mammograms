@@ -504,3 +504,23 @@ AUC calculated 0.5
 ======Run 126 took 12.0633761644 minutes to complete=========
 ======Setting Parameters value=========
 weight_decay = 0.353 || weight_decay2 = 0.866 || init_lr = 0.09 || all_layer_multiplier = 0.018 || pos_cls_weight = 0.695 || neg_cls_weight = 0.536
+AUC calculated 0.5
+======Run 127 took 11.1497567336 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.302 || weight_decay2 = 0.304 || init_lr = 0.854 || all_layer_multiplier = 0.02 || pos_cls_weight = 0.76 || neg_cls_weight = 0.57
+AUC calculated 0
+======Run 128 took 10.2272252679 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.999 || weight_decay2 = 0.864 || init_lr = 0.07 || all_layer_multiplier = 0.016 || pos_cls_weight = 0.696 || neg_cls_weight = 0.536
+AUC calculated 0.5
+======Run 129 took 11.4047044675 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.034 || weight_decay2 = 0.336 || init_lr = 0.726 || all_layer_multiplier = 0.018 || pos_cls_weight = 0.636 || neg_cls_weight = 0.078
+AUC calculated 0.5
+======Run 130 took 12.4271409035 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.999 || weight_decay2 = 0.96 || init_lr = 0.607 || all_layer_multiplier = 0.016 || pos_cls_weight = 0.76 || neg_cls_weight = 0.65
+AUC calculated 0.5
+======Run 131 took 11.2480659167 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.293 || weight_decay2 = 0.368 || init_lr = 0.094 || all_layer_multiplier = 0.026 || pos_cls_weight = 0.696 || neg_cls_weight = 0.028
