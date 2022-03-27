@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 aucArray=[]
 timesFitnessFuncEvaluated=[]
 
-if os.path.exists("logs_common.txt"):
-    with open('logs_common.txt', 'r') as f:
+if os.path.exists("../logs_common.txt"):
+    with open('../logs_common.txt', 'r') as f:
         for line in f:
             if 'AUC calculated ' in line:
                 aucArray.append(float(line[15:].replace('\n','')))
