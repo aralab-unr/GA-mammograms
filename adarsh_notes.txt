@@ -91,6 +91,9 @@ STEPS TO PROGRAM GA-E2E ALGORITHM:
 4. Program ga.py to create a string of query to be run for fitness function
     - return of fitness function is AUC because we want to maximize AUC
     - consider AUC as the one from test set
+    - Approx 160 s for each epoch
+    - Total of 4 epochs per training - to save time
+    - Approx 11 minutes per fitness function evaluation
 =====================================================================================
 
 EXPERIMENTS PERFORMED
