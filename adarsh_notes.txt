@@ -99,6 +99,7 @@ STEPS TO PROGRAM GA-E2E ALGORITHM:
     - This will plot AUC on y axis, times fitness function evaluated on x axis.
     - This signifies overall increase in AUC over fitness function runs
     - Further signifying moving of search space in promising direction
+    - plot, time taken to run over fitness function evaluations
 =====================================================================================
 
 EXPERIMENTS PERFORMED
