@@ -94,6 +94,11 @@ STEPS TO PROGRAM GA-E2E ALGORITHM:
     - Approx 160 s for each epoch
     - Total of 4 epochs per training - to save time
     - Approx 11 minutes per fitness function evaluation
+
+5. Program to plot AUC vs times fitness function evaluated - plot_rewards.py
+    - This will plot AUC on y axis, times fitness function evaluated on x axis.
+    - This signifies overall increase in AUC over fitness function runs
+    - Further signifying moving of search space in promising direction
 =====================================================================================
 
 EXPERIMENTS PERFORMED
