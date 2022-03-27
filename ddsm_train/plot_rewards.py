@@ -11,7 +11,7 @@ if os.path.exists("logs_common.txt"):
             if 'AUC calculated ' in line:
                 aucArray.append(float(line[15:].replace('\n','')))
 
-for i in len(aucArray):
+for i in range(0,len(aucArray)):
     timesFitnessFuncEvaluated.append(i)
 
 x = np.array(timesFitnessFuncEvaluated)
@@ -23,3 +23,4 @@ plt.xlabel('Times Fitness function evaluated')
 plt.ylabel('AUC')
 
 plt.savefig('AUC vs. Times Fitness function evaluated')
+
