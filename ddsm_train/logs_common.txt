@@ -1648,3 +1648,111 @@ AUC calculated 0.5
 ======Run 412 took 11.2286514997 minutes to complete=========
 ======Setting Parameters value=========
 weight_decay = 0.676 || weight_decay2 = 0.983 || init_lr = 0.236 || all_layer_multiplier = 0.008 || pos_cls_weight = 0.632 || neg_cls_weight = 0.844
+AUC calculated 0.5
+======Run 413 took 11.3460159024 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.356 || weight_decay2 = 0.999 || init_lr = 0.638 || all_layer_multiplier = 0.562 || pos_cls_weight = 0.248 || neg_cls_weight = 0.6
+AUC calculated 0
+======Run 414 took 10.527091833 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.292 || weight_decay2 = 0.47 || init_lr = 0.126 || all_layer_multiplier = 0.634 || pos_cls_weight = 0.248 || neg_cls_weight = 0.344
+AUC calculated 0
+======Run 415 took 10.4586342494 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.82 || weight_decay2 = 0.999 || init_lr = 0.606 || all_layer_multiplier = 0.004 || pos_cls_weight = 0.76 || neg_cls_weight = 0.58
+AUC calculated 0.5
+======Run 416 took 12.085220166 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.381 || weight_decay2 = 0.242 || init_lr = 0.126 || all_layer_multiplier = 0.09 || pos_cls_weight = 0.696 || neg_cls_weight = 0.536
+AUC calculated 0.5
+======Run 417 took 12.5723748167 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.814 || weight_decay2 = 0.34 || init_lr = 0.627 || all_layer_multiplier = 0.032 || pos_cls_weight = 0.248 || neg_cls_weight = 0.84
+AUC calculated 0
+======Run 418 took 11.5501031001 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.87 || weight_decay2 = 0.999 || init_lr = 0.094 || all_layer_multiplier = 0.026 || pos_cls_weight = 0.24 || neg_cls_weight = 0.6
+AUC calculated 0.5
+======Run 419 took 12.4315453013 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.292 || weight_decay2 = 0.851 || init_lr = 0.09 || all_layer_multiplier = 0.176 || pos_cls_weight = 0.762 || neg_cls_weight = 0.844
+AUC calculated 0.5
+======Run 420 took 11.6433683991 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.357 || weight_decay2 = 0.497 || init_lr = 0.062 || all_layer_multiplier = 0.027 || pos_cls_weight = 0.76 || neg_cls_weight = 0.844
+AUC calculated 0.5
+======Run 421 took 12.225844264 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.677 || weight_decay2 = 0.918 || init_lr = 0.086 || all_layer_multiplier = 0.024 || pos_cls_weight = 0.688 || neg_cls_weight = 0.6
+AUC calculated 0.5
+======Run 422 took 12.2700375358 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.352 || weight_decay2 = 0.999 || init_lr = 0.094 || all_layer_multiplier = 0.112 || pos_cls_weight = 0.22 || neg_cls_weight = 0.832
+AUC calculated 0.5
+======Run 423 took 11.9431101998 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.804 || weight_decay2 = 0.999 || init_lr = 0.126 || all_layer_multiplier = 0.024 || pos_cls_weight = 0.745 || neg_cls_weight = 0.092
+AUC calculated 0.5
+======Run 424 took 12.1555111329 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.375 || weight_decay2 = 0.884 || init_lr = 0.542 || all_layer_multiplier = 0.602 || pos_cls_weight = 0.248 || neg_cls_weight = 0.094
+AUC calculated 0
+======Run 425 took 11.3307872176 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.999 || weight_decay2 = 0.994 || init_lr = 0.122 || all_layer_multiplier = 0.056 || pos_cls_weight = 0.696 || neg_cls_weight = 0.84
+AUC calculated 0.5
+======Run 426 took 11.8934093157 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.356 || weight_decay2 = 0.96 || init_lr = 0.607 || all_layer_multiplier = 0.05 || pos_cls_weight = 0.696 || neg_cls_weight = 0.584
+AUC calculated 0
+======Run 427 took 11.2213591337 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.829 || weight_decay2 = 0.999 || init_lr = 0.254 || all_layer_multiplier = 0.024 || pos_cls_weight = 0.248 || neg_cls_weight = 0.844
+AUC calculated 0.5
+======Run 428 took 12.3655122519 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.999 || weight_decay2 = 0.882 || init_lr = 0.126 || all_layer_multiplier = 0.048 || pos_cls_weight = 0.76 || neg_cls_weight = 0.589
+AUC calculated 0.5
+======Run 429 took 11.2096831679 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.296 || weight_decay2 = 0.999 || init_lr = 0.89 || all_layer_multiplier = 0.009 || pos_cls_weight = 0.184 || neg_cls_weight = 0.842
+AUC calculated 0.5
+======Run 430 took 10.9430753152 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.484 || weight_decay2 = 0.982 || init_lr = 0.126 || all_layer_multiplier = 0.051 || pos_cls_weight = 0.248 || neg_cls_weight = 0.028
+AUC calculated 0.5
+======Run 431 took 10.989301602 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.3 || weight_decay2 = 0.999 || init_lr = 0.318 || all_layer_multiplier = 0.024 || pos_cls_weight = 0.752 || neg_cls_weight = 0.84
+AUC calculated 0.5
+======Run 432 took 10.9402173162 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.807 || weight_decay2 = 0.756 || init_lr = 0.603 || all_layer_multiplier = 0.278 || pos_cls_weight = 0.12 || neg_cls_weight = 0.86
+AUC calculated 0
+======Run 433 took 10.2456190308 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.789 || weight_decay2 = 0.886 || init_lr = 0.111 || all_layer_multiplier = 0.06 || pos_cls_weight = 0.696 || neg_cls_weight = 0.522
+AUC calculated 0.5
+======Run 434 took 10.9557962497 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.356 || weight_decay2 = 0.882 || init_lr = 0.638 || all_layer_multiplier = 0.152 || pos_cls_weight = 0.248 || neg_cls_weight = 0.598
+AUC calculated 0
+======Run 435 took 10.2420455496 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.804 || weight_decay2 = 0.333 || init_lr = 0.094 || all_layer_multiplier = 0.058 || pos_cls_weight = 0.632 || neg_cls_weight = 0.873
+AUC calculated 0.5
+======Run 436 took 10.9760842641 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.822 || weight_decay2 = 0.87 || init_lr = 0.638 || all_layer_multiplier = 0.024 || pos_cls_weight = 0.633 || neg_cls_weight = 0.6
+AUC calculated 0.5
+======Run 437 took 10.9185881853 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.999 || weight_decay2 = 0.999 || init_lr = 0.351 || all_layer_multiplier = 0.018 || pos_cls_weight = 0.506 || neg_cls_weight = 0.782
+AUC calculated 0
+======Run 438 took 5.02239916722 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.999 || weight_decay2 = 0.999 || init_lr = 0.332 || all_layer_multiplier = 0.018 || pos_cls_weight = 0.754 || neg_cls_weight = 0.081
+AUC calculated 0.5
+======Run 439 took 12.5832961321 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.364 || weight_decay2 = 0.98 || init_lr = 0.254 || all_layer_multiplier = 0.185 || pos_cls_weight = 0.124 || neg_cls_weight = 0.844
