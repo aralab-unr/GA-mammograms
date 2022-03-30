@@ -10,7 +10,8 @@ if os.path.exists("../logs_common.txt"):
         for line in f:
             if 'AUC calculated ' in line:
                 aucArray.append(float(line[15:].replace('\n','')))
-                print(float(line[15:].replace('\n','')))
+                with open('logs_rewards.txt', 'a') as output:
+                    output.write(str(float(line[15:].replace('\n',''))) + "\n")
 
 for i in range(0,len(aucArray)):
     timesFitnessFuncEvaluated.append(i)
