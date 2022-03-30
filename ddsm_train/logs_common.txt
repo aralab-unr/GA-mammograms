@@ -2064,3 +2064,35 @@ AUC calculated 0.5
 ======Run 516 took 11.0234738509 minutes to complete=========
 ======Setting Parameters value=========
 weight_decay = 0.868 || weight_decay2 = 0.999 || init_lr = 0.638 || all_layer_multiplier = 0.688 || pos_cls_weight = 0.244 || neg_cls_weight = 0.765
+AUC calculated 0
+======Run 517 took 10.5153596361 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.484 || weight_decay2 = 0.979 || init_lr = 0.094 || all_layer_multiplier = 0.018 || pos_cls_weight = 0.76 || neg_cls_weight = 0.602
+AUC calculated 0.5
+======Run 518 took 10.9515793165 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.807 || weight_decay2 = 0.948 || init_lr = 0.763 || all_layer_multiplier = 0.155 || pos_cls_weight = 0.488 || neg_cls_weight = 0.842
+AUC calculated 0
+======Run 519 took 10.2152410348 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.308 || weight_decay2 = 0.872 || init_lr = 0.11 || all_layer_multiplier = 0.561 || pos_cls_weight = 0.186 || neg_cls_weight = 0.604
+AUC calculated 0
+======Run 520 took 10.4863410989 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.868 || weight_decay2 = 0.886 || init_lr = 0.095 || all_layer_multiplier = 0.124 || pos_cls_weight = 0.728 || neg_cls_weight = 0.872
+AUC calculated 0.5
+======Run 521 took 13.8602379004 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.26 || weight_decay2 = 0.915 || init_lr = 0.126 || all_layer_multiplier = 0.018 || pos_cls_weight = 0.252 || neg_cls_weight = 0.588
+AUC calculated 0.5
+======Run 522 took 12.978487436 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.26 || weight_decay2 = 0.978 || init_lr = 0.127 || all_layer_multiplier = 0.145 || pos_cls_weight = 0.712 || neg_cls_weight = 0.844
+AUC calculated 0
+======Run 523 took 12.5342894832 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.868 || weight_decay2 = 0.885 || init_lr = 0.09 || all_layer_multiplier = 0.57 || pos_cls_weight = 0.248 || neg_cls_weight = 0.09
+AUC calculated 0
+======Run 524 took 12.7088289817 minutes to complete=========
+======Setting Parameters value=========
+weight_decay = 0.812 || weight_decay2 = 0.503 || init_lr = 0.124 || all_layer_multiplier = 0.154 || pos_cls_weight = 0.76 || neg_cls_weight = 0.857
