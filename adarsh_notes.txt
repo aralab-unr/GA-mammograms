@@ -154,3 +154,20 @@ PARAMETERS FOR GA OPTIMIZATION:
 -neg-cls-weight, range 0-1, 3 decimal places, default: 1.0
 -weight-decay, range 0-1, 3 decimal places, default: 0.001
 -weight-decay2, range 0-1, 3 decimal places, default: 0.01
+
+Best auc so far : 0.5625
+BEST CHROMOSOME IS
+[False False  True  True  True  True  True False False False  True  True
+  True False  True False  True  True  True False False  True False  True
+  True False False  True False False  True False False False  True  True
+  True  True False  True False  True  True  True False False False False
+  True False  True  True  True  True False  True False False False False
+ False  True  True False  True False]
+It's decoded value is
+pos_cls_weight = 0.248
+neg_cls_weight = 1.721
+weight_decay = 0.804
+weight_decay2 = 0.983
+init_lr = 0.094
+all_layer_multiplier = 0.026
+--- 355461.121692 seconds ---
