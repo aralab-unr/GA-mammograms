@@ -11,8 +11,8 @@ from dm_keras_ext import (
 from dm_resnet import add_top_layers, bottleneck_org
 from dm_multi_gpu import make_parallel
 import warnings
-import exceptions
-warnings.filterwarnings('ignore', category=exceptions.UserWarning)
+# import exceptions
+# warnings.filterwarnings('ignore', category=exceptions.UserWarning)
 
 
 def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
@@ -142,6 +142,8 @@ def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
         val_samples = len(validation_set[0])
     else:
         val_samples = validation_set.nb_sample
+    print(val_samples)
+    print(batch_size)
     validation_steps = int(val_samples/batch_size)
     #### DEBUG ####
     # train_batches = 1
@@ -289,8 +291,8 @@ if __name__ == '__main__':
                         default="NOSAVE")
 
     args = parser.parse_args()
-    if args.patch_model_state is None and args.resume_from is None:
-        raise Exception('One of [patch_model_state, resume_from] must not be None.')
+    # if args.patch_model_state is None and args.resume_from is None:
+    #     raise Exception('One of [patch_model_state, resume_from] must not be None.')
     run_opts = dict(
         patch_model_state=args.patch_model_state,
         resume_from=args.resume_from,

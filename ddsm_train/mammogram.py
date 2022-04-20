@@ -32,18 +32,17 @@ class Mammogram(FloatProblem):
             val_dir=VAL_DIR,
             test_dir=TEST_DIR,
             resume_from=BEST_MODEL,
-            img_size='1152 896',
+            img_size=[1152, 896],
             rescale_factor=0.003891,
             featurewise_mean=44.33,
             patch_net='resnet50',
             block_type='resnet',
             top_depths='512 512',
             batch_size=2,
-            all_layer_epochs=20,
-            class_list='neg pos',
+            all_layer_epochs=4,
             load_val_ram=False,
             load_train_ram=False,
-            weight_decay=solution.variables[0],
+            weight_decay=float(solution.variables[0]),
             weight_decay2=solution.variables[1],
             init_lr=solution.variables[2],
             all_layer_multiplier=solution.variables[3],
@@ -51,8 +50,10 @@ class Mammogram(FloatProblem):
             neg_cls_weight=solution.variables[5],
             lr_patience=10,
             es_patience=25,
-            augmentation=True
+            augmentation=True,
+            nb_epoch = 0
         )
+        print(total)
 
         solution.objectives[0] = total
 
