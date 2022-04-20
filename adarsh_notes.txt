@@ -30,6 +30,15 @@ pip3 install h5py
 8. set python path
 export PYTHONPATH=$PYTHONPATH:/home/adarshsehgal/workspace/GA-mammograms
 
+9. install pyspark for parallel ga computing
+pip3 install pyspark
+
+10. install jmetal
+pip3 install pip3 install "jmetalpy[distributed]"
+
+11. install java
+sudo apt install openjdk-8-jdk
+
 cd workspace/GA-mammograms/ddsm_train/
 
 =========================================================================================
@@ -175,5 +184,26 @@ all_layer_multiplier = 0.026
 
 
 =================================================================================
-MIT jmetal implementation
+-MIT jmetal implementation
 https://github.com/jMetal/jMetalPy
+
+-how to run jmetal in parallel
+https://jmetal.github.io/jMetalPy/tutorials/evaluator.html
+from jmetal.util.evaluator import MapEvaluator
+from jmetal.util.evaluator import MultiprocessEvaluator
+from jmetal.util.evaluator import SparkEvaluator
+
+algorithm = NSGAII(
+   problem=problem,
+   population_size=100,
+   offspring_population_size=100,
+   ...
+   population_evaluator = SparkEvaluator(processes=8),
+ )
+
+pip3 install pyspark
+
+-how to install spark for parallel run
+https://www.mytechmint.com/how-to-install-pyspark-with-java-8-on-ubuntu-18-04/
+
+

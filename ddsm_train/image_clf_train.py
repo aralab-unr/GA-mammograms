@@ -142,8 +142,6 @@ def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
         val_samples = len(validation_set[0])
     else:
         val_samples = validation_set.nb_sample
-    print(val_samples)
-    print(batch_size)
     validation_steps = int(val_samples/batch_size)
     #### DEBUG ####
     # train_batches = 1
@@ -179,12 +177,15 @@ def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
         print("Minimum val loss achieved at epoch:", min_loss_locs[0] + 1)
         print("Best val loss:", best_val_loss)
         print("Best val accuracy:", best_val_accuracy)
+        # return best validation accuracy for GA
+        return acc_hist[min_loss_locs[0]]
+    else:
+        return 0
 
     if final_model != "NOSAVE":
         image_model.save(final_model)
 
-    #return best validation accuracy for GA
-    return acc_hist[min_loss_locs[0]]
+
     # ==== Predict on test set ==== #
     # print "\n==== Predicting on test set ===="
     # test_generator = test_imgen.flow_from_directory(
