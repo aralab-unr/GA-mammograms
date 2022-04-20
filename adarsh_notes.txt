@@ -6,28 +6,29 @@ cd virtualenv/
 sudo apt install virtualenv
 virtualenv -p python py-keras
 source py-keras/bin/activate
-pip install -q -U pip setuptools wheel
+
+pip3 install -q -U pip setuptools wheel
 
 2. Install Keras
-pip install keras==2.0.8
+pip3 install keras==2.0.8
 
 3. Install tensorflow
-pip install tensorflow==1.3
+pip3 install tensorflow==1.3
 
 4. Install opencv
-pip install opencv-python==4.2.0.32
+pip3 install opencv-python==4.2.0.32
 
 5. install pydicom
-pip install pydicom
+pip3 install pydicom
 
 6. install sklearn
-pip install sklearn
+pip3 install sklearn
 
 7. install h5py
-pip install h5py
+pip3 install h5py
 
 8. set python path
-export PYTHONPATH=$PYTHONPATH:/home/adarsh/workspace/GA-mammograms
+export PYTHONPATH=$PYTHONPATH:/home/adarshsehgal/workspace/GA-mammograms
 
 cd workspace/GA-mammograms/ddsm_train/
 

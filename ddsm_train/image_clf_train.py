@@ -18,10 +18,10 @@ warnings.filterwarnings('ignore', category=exceptions.UserWarning)
 def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
         img_size=[1152, 896], img_scale=None, rescale_factor=None,
         featurewise_center=True, featurewise_mean=52.16, 
-        equalize_hist=False, augmentation=True,
+        equalize_hist=False, augmentation=False,
         class_list=['neg', 'pos'], patch_net='resnet50',
-        block_type='resnet', top_depths=[512, 512], top_repetitions=[3, 3], 
-        bottleneck_enlarge_factor=4, 
+        block_type='resnet', top_depths=[512, 512], top_repetitions=[2, 2],
+        bottleneck_enlarge_factor=2,
         add_heatmap=False, avg_pool_size=[7, 7], 
         add_conv=True, add_shortcut=False,
         hm_strides=(1,1), hm_pool_size=(5,5),
@@ -32,10 +32,10 @@ def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
         load_val_ram=False, load_train_ram=False,
         weight_decay=.0001, hidden_dropout=.0, 
         weight_decay2=.0001, hidden_dropout2=.0, 
-        optim='sgd', init_lr=.01, lr_patience=10, es_patience=25,
-        auto_batch_balance=False, pos_cls_weight=1.0, neg_cls_weight=1.0,
+        optim='adam', init_lr=.01, lr_patience=10, es_patience=25,
+        auto_batch_balance=True, pos_cls_weight=1.0, neg_cls_weight=1.0,
         all_layer_multiplier=.1,
-        best_model='./modelState/image_clf.h5',
+        best_model='image_clf.h5',
         final_model="NOSAVE"):
     '''Train a deep learning model for image classifications
     '''
@@ -181,32 +181,32 @@ def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
     if final_model != "NOSAVE":
         image_model.save(final_model)
 
+    #return best validation accuracy for GA
+    return acc_hist[min_loss_locs[0]]
     # ==== Predict on test set ==== #
-    print "\n==== Predicting on test set ===="
-    test_generator = test_imgen.flow_from_directory(
-        test_dir, target_size=img_size, target_scale=img_scale,
-        rescale_factor=rescale_factor,
-        equalize_hist=equalize_hist, dup_3_channels=dup_3_channels, 
-        classes=class_list, class_mode='categorical', batch_size=batch_size, 
-        shuffle=False)
-    test_samples = test_generator.nb_sample
-    #### DEBUG ####
-    # test_samples = 5
-    #### DEBUG ####
-    print "Test samples =", test_samples
-    print "Load saved best model:", best_model + '.',
-    sys.stdout.flush()
-    org_model.load_weights(best_model)
-    print "Done."
-    # test_steps = int(test_generator.nb_sample/batch_size)
-    # test_res = image_model.evaluate_generator(
-    #     test_generator, test_steps, nb_worker=nb_worker, 
-    #     pickle_safe=True if nb_worker > 1 else False)
-    test_auc = DMAucModelCheckpoint.calc_test_auc(
-        test_generator, image_model, test_samples=test_samples)
-    with open('reward.txt', 'w') as output:
-        output.write(str(np.mean(test_auc)))
-    print "AUROC on test set:", test_auc
+    # print "\n==== Predicting on test set ===="
+    # test_generator = test_imgen.flow_from_directory(
+    #     test_dir, target_size=img_size, target_scale=img_scale,
+    #     rescale_factor=rescale_factor,
+    #     equalize_hist=equalize_hist, dup_3_channels=dup_3_channels,
+    #     classes=class_list, class_mode='categorical', batch_size=batch_size,
+    #     shuffle=False)
+    # test_samples = test_generator.nb_sample
+    # #### DEBUG ####
+    # # test_samples = 5
+    # #### DEBUG ####
+    # print "Test samples =", test_samples
+    # print "Load saved best model:", best_model + '.',
+    # sys.stdout.flush()
+    # org_model.load_weights(best_model)
+    # print "Done."
+    # # test_steps = int(test_generator.nb_sample/batch_size)
+    # # test_res = image_model.evaluate_generator(
+    # #     test_generator, test_steps, nb_worker=nb_worker,
+    # #     pickle_safe=True if nb_worker > 1 else False)
+    # test_auc = DMAucModelCheckpoint.calc_test_auc(
+    #     test_generator, image_model, test_samples=test_samples)
+    # print "AUROC on test set:", test_auc
 
 
 if __name__ == '__main__':

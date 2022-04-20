@@ -11,7 +11,7 @@ from jmetal.util.solution import get_non_dominated_solutions, print_function_val
 from jmetal.algorithm.singleobjective import GeneticAlgorithm
 
 if __name__ == "__main__":
-    problem = Mammogram(10)
+    problem = Mammogram(6)
 
     algorithm = GeneticAlgorithm(
         problem=problem,
@@ -32,6 +32,6 @@ if __name__ == "__main__":
     print("Fitness: {}".format(result.objectives[0]))
     print("Computing time: {}".format(algorithm.total_computing_time))
 
-    front = get_non_dominated_solutions([algorithm.get_result()])
-    plot_front = Plot(title='Pareto front approximation', axis_labels=['x', 'y'])
-    plot_front.plot(front, label='GA-E2E', filename='GA-E2E', format='png')
+    # front = get_non_dominated_solutions([algorithm.get_result()])
+    # plot_front = Plot(title='Pareto front approximation', axis_labels=['x', 'y'])
+    # plot_front.plot(front, label='GA-E2E', filename='GA-E2E', format='png')
