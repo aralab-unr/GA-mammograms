@@ -171,3 +171,8 @@ weight_decay2 = 0.983
 init_lr = 0.094
 all_layer_multiplier = 0.026
 --- 355461.121692 seconds ---
+
+
+=================================================================================
+MIT jmetal implementation
+https://github.com/jMetal/jMetalPy
