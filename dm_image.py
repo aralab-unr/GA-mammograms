@@ -513,9 +513,9 @@ class DMExamListIterator(Iterator):
                         gs_255=self.gs_255)
             except ValueError:
                 if self.err_counter < 10:
-                    print "Error encountered reading an image dataframe:", 
-                    print img_df, "Use a blank image instead."
-                    print "Exam caused trouble:", exam
+                    print("Error encountered reading an image dataframe:")
+                    print(img_df, "Use a blank image instead.")
+                    print("Exam caused trouble:", exam)
                     self.err_counter += 1
                 img = np.zeros(self.target_size, dtype='float32')
 
@@ -838,8 +838,8 @@ class DMCandidROIIterator(Iterator):
             # blob detection.
             key_pts = self.blob_detector.detect((img/img.max()*255).astype('uint8'))
             if int(self.verbose) > 1:
-                print "%s: blob detection found %d key points." % \
-                    (self.filenames[fi], len(key_pts))
+                print("%s: blob detection found %d key points.")
+                (self.filenames[fi], len(key_pts))
             if len(key_pts) > nb_img_roi:
                 # key_pts = rng.choice(key_pts, self.roi_per_img, replace=False)
                 key_pts = clust_kpts(key_pts, nb_img_roi, self.seed)

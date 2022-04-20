@@ -200,14 +200,14 @@ def get_dl_model(net, nb_class=3, use_pretrained=True, resume_from=None,
     weights = 'imagenet' if use_pretrained else None
 
     if resume_from is not None:
-        print "Loading existing model state.",
+        print("Loading existing model state.")
         sys.stdout.flush()
         model = load_model(resume_from)
-        print "Done."
+        print("Done.")
     elif net == 'yaroslav':
         model = Yaroslav(classes=nb_class)
     else:
-        print "Loading %s," % (net),
+        print("Loading %s," % (net))
         sys.stdout.flush()
         base_model = NNet(weights=weights, include_top=False, 
                           input_shape=None, pooling='avg')
@@ -217,7 +217,7 @@ def get_dl_model(net, nb_class=3, use_pretrained=True, resume_from=None,
         preds = Dense(nb_class, activation='softmax', 
                       kernel_regularizer=l2(weight_decay))(x)
         model = Model(input=base_model.input, output=preds)
-        print "Done."
+        print("Done.")
 
     return model, preprocess_input, top_layer_nb
 
@@ -279,13 +279,13 @@ def do_3stage_training(model, org_model, train_generator, validation_set,
         pickle_safe = True
 
     # Stage 1: train only the last dense layer if using pretrained model.
-    print "Start model training",
+    print("Start model training")
     if use_pretrained:
-        print "on the last dense layer only"
+        print("on the last dense layer only")
         for layer in org_model.layers[:-1]:
             layer.trainable = False
     else:
-        print "on all layers"
+        print("on all layers")
     sys.stdout.flush()
     model.compile(optimizer=create_optimizer(optim, init_lr), 
                   loss='categorical_crossentropy', metrics=['accuracy'])
@@ -300,7 +300,7 @@ def do_3stage_training(model, org_model, train_generator, validation_set,
         nb_worker=nb_worker, 
         pickle_safe=pickle_safe,
         verbose=2)
-    print "Done."
+    print("Done.")
     try:
         loss_history = hist.history['val_loss']
         acc_history = hist.history['val_acc']
@@ -310,7 +310,7 @@ def do_3stage_training(model, org_model, train_generator, validation_set,
     
     # Stage 2: train only the top layers.
     if use_pretrained:
-        print "top layer nb =", top_layer_nb
+        print("top layer nb =", top_layer_nb)
         for layer in org_model.layers[top_layer_nb:]:
             layer.trainable = True
         # # adjust weight decay and dropout rate for those BN heavy models.
@@ -321,7 +321,7 @@ def do_3stage_training(model, org_model, train_generator, validation_set,
         dropout_layer.rate = hidden_dropout2
         model.compile(optimizer=create_optimizer(optim, init_lr*top_layer_multiplier), 
                       loss='categorical_crossentropy', metrics=['accuracy'])
-        print "Start training on the top layers only"; sys.stdout.flush()
+        print("Start training on the top layers only"); sys.stdout.flush()
         hist = model.fit_generator(
             train_generator, 
             steps_per_epoch=steps_per_epoch, 
@@ -333,7 +333,7 @@ def do_3stage_training(model, org_model, train_generator, validation_set,
             nb_worker=nb_worker, 
             pickle_safe=pickle_safe,
             verbose=2, initial_epoch=len(loss_history))
-        print "Done."
+        print("Done.")
         try:
             loss_history = np.append(loss_history, hist.history['val_loss'])
             acc_history = np.append(acc_history, hist.history['val_acc'])
@@ -345,7 +345,7 @@ def do_3stage_training(model, org_model, train_generator, validation_set,
             layer.trainable = True
         model.compile(optimizer=create_optimizer(optim, init_lr*all_layer_multiplier), 
                       loss='categorical_crossentropy', metrics=['accuracy'])
-        print "Start training on all layers"; sys.stdout.flush()
+        print("Start training on all layers"); sys.stdout.flush()
         hist = model.fit_generator(
             train_generator, 
             steps_per_epoch=steps_per_epoch, 
@@ -357,7 +357,7 @@ def do_3stage_training(model, org_model, train_generator, validation_set,
             nb_worker=nb_worker, 
             pickle_safe=pickle_safe,
             verbose=2, initial_epoch=len(loss_history))
-        print "Done."
+        print("Done.")
         try:
             loss_history = np.append(loss_history, hist.history['val_loss'])
             acc_history = np.append(acc_history, hist.history['val_acc'])
@@ -409,7 +409,7 @@ def do_2stage_training(model, org_model, train_generator, validation_set,
         pickle_safe = True
 
     # Stage 1: train only the top layers.
-    print "Top layer nb =", top_layer_nb
+    print("Top layer nb =", top_layer_nb)
     # import pdb; pdb.set_trace()
     for layer in org_model.layers[:top_layer_nb]:
         layer.trainable = False
@@ -423,7 +423,7 @@ def do_2stage_training(model, org_model, train_generator, validation_set,
             layer.rate = hidden_dropout
     model.compile(optimizer=create_optimizer(optim, init_lr), 
                   loss='categorical_crossentropy', metrics=['accuracy'])
-    print "Start training on the top layers only"; sys.stdout.flush()
+    print("Start training on the top layers only"); sys.stdout.flush()
     hist = model.fit_generator(
         train_generator, 
         steps_per_epoch=steps_per_epoch, 
@@ -435,7 +435,7 @@ def do_2stage_training(model, org_model, train_generator, validation_set,
         nb_worker=nb_worker, 
         pickle_safe=pickle_safe,
         verbose=2)
-    print "Done."
+    print("Done.")
     try:
         loss_history = hist.history['val_loss']
         acc_history = hist.history['val_acc']
@@ -456,7 +456,7 @@ def do_2stage_training(model, org_model, train_generator, validation_set,
             layer.rate = hidden_dropout2
     model.compile(optimizer=create_optimizer(optim, init_lr*all_layer_multiplier), 
                   loss='categorical_crossentropy', metrics=['accuracy'])
-    print "Start training on all layers"; sys.stdout.flush()
+    print("Start training on all layers"); sys.stdout.flush()
     hist = model.fit_generator(
         train_generator, 
         steps_per_epoch=steps_per_epoch, 
@@ -468,7 +468,7 @@ def do_2stage_training(model, org_model, train_generator, validation_set,
         nb_worker=nb_worker, 
         pickle_safe=pickle_safe,
         verbose=2, initial_epoch=len(loss_history))
-    print "Done."
+    print("Done.")
     try:
         loss_history = np.append(loss_history, hist.history['val_loss'])
         acc_history = np.append(acc_history, hist.history['val_acc'])
@@ -624,7 +624,7 @@ class DMAucModelCheckpoint(Callback):
         # else:
         #     raise Exception("Unknown auc format: " + str(auc))
         epoch_auc = np.mean(auc)
-        print " - Epoch:%d, AUROC:%s, mean=%.4f" % (epoch + 1, str(auc), epoch_auc)
+        print(" - Epoch:%d, AUROC:%s, mean=%.4f" % (epoch + 1, str(auc), epoch_auc))
         sys.stdout.flush()
         # epoch_auc = non_bkg_auc_pos if y_pred.shape[1] == 3 else auc
         if epoch_auc > self.best_auc:
@@ -636,11 +636,10 @@ class DMAucModelCheckpoint(Callback):
 
     def on_train_end(self, logs={}):
         if self.best_auc >= 0.:
-            print "\n>>> Found best AUROC: %.4f at epoch: %d, saved to: %s <<<" % \
-                (self.best_auc, self.best_epoch, self.filepath)
-            print ">>> AUROC for all cls:", str(self.best_all_auc), "<<<"
+            print("\n>>> Found best AUROC: %.4f at epoch: %d, saved to: %s <<<" % (self.best_auc, self.best_epoch, self.filepath))
+            print(">>> AUROC for all cls:", str(self.best_all_auc), "<<<")
         else:
-            print "\n>>> AUROC was not scored. No model was saved. <<<"
+            print("\n>>> AUROC was not scored. No model was saved. <<<")
         sys.stdout.flush()
 
 
