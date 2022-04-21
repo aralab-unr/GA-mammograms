@@ -37,8 +37,8 @@ class Mammogram(FloatProblem):
             featurewise_mean=44.33,
             patch_net='resnet50',
             block_type='resnet',
-            batch_size=2,
-            all_layer_epochs=4,
+            batch_size=2, #tweak this parameter for better performance
+            all_layer_epochs=4, #tweak this parameter for better performance
             load_val_ram=False,
             load_train_ram=False,
             weight_decay=float(solution.variables[0]),

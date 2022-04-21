@@ -34,7 +34,7 @@ export PYTHONPATH=$PYTHONPATH:/home/adarshsehgal/workspace/GA-mammograms
 pip3 install pyspark
 
 10. install jmetal
-pip3 install pip3 install "jmetalpy[distributed]"
+pip3 install "jmetalpy[distributed]"
 
 11. install java
 sudo apt install openjdk-8-jdk
