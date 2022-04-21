@@ -5,6 +5,9 @@ from jmetal.core.problem import BinaryProblem, FloatProblem
 from jmetal.core.solution import BinarySolution, FloatSolution
 import image_clf_train
 
+timesEvaluated = 0
+bestauc = -1
+
 class Mammogram(FloatProblem):
     def __init__(self, number_of_variables: int = 6):
         super(Mammogram, self).__init__()
@@ -27,6 +30,21 @@ class Mammogram(FloatProblem):
         TEST_DIR = "Inbreast/test"
         BEST_MODEL = "ddsm_vgg16_s10_[512-512-1024]x2_hybrid.h5"
 
+        global timesEvaluated
+        timesEvaluated += 1
+        with open('logs_fitness_function_invoked.txt', 'a') as output:
+            output.write(str(timesEvaluated) + "\n")
+        print("Fitness function invoked " + str(timesEvaluated) + " times")
+
+        with open('logs_common.txt', 'a') as output:
+            output.write("======Setting Parameters value=========" + "\n")
+            output.write("weight_decay = " + str(solution.variables[0]))
+            output.write(" || weight_decay2 = " + str(solution.variables[1]))
+            output.write(" || init_lr = " + str(solution.variables[2]))
+            output.write(" || all_layer_multiplier = " + str(solution.variables[3]))
+            output.write(" || pos_cls_weight = " + str(solution.variables[4]))
+            output.write(" || neg_cls_weight = " + str(solution.variables[5]) + "\n")
+
         total = image_clf_train.run(
             train_dir=TRAIN_DIR,
             val_dir=VAL_DIR,
@@ -41,18 +59,42 @@ class Mammogram(FloatProblem):
             all_layer_epochs=4, #tweak this parameter for better performance
             load_val_ram=False,
             load_train_ram=False,
-            weight_decay=float(solution.variables[0]),
-            weight_decay2=solution.variables[1],
-            init_lr=solution.variables[2],
-            all_layer_multiplier=solution.variables[3],
-            pos_cls_weight=solution.variables[4],
-            neg_cls_weight=solution.variables[5],
-            lr_patience=10,
-            es_patience=25,
-            augmentation=True,
-            nb_epoch = 0
+            weight_decay = solution.variables[0],
+            weight_decay2 = solution.variables[1],
+            init_lr = solution.variables[2],
+            all_layer_multiplier = solution.variables[3],
+            pos_cls_weight = solution.variables[4],
+            neg_cls_weight = solution.variables[5],
+            lr_patience=2,
+            es_patience=10,
+            augmentation=False,
+            nb_epoch = 0,
+            best_model = 'modelFiles/file_' + str(timesEvaluated) + '.h5'
         )
+
         print(total)
+
+        with open('logs_common.txt', 'a') as output:
+            output.write("AUC calculated " + str(total) + "\n")
+
+        global bestauc
+        if bestauc == -1:
+            bestauc = total
+        if total >= bestauc:
+            bestauc = total
+            with open('BestParameters.txt', 'a') as output:
+                output.write("AUC : " + str(bestauc) + "\n")
+                output.write("weight_decay = " + str(solution.variables[0]) + "\n")
+                output.write("weight_decay2 = " + str(solution.variables[1]) + "\n")
+                output.write("init_lr = " + str(solution.variables[2]) + "\n")
+                output.write("all_layer_multiplier = " + str(solution.variables[3]) + "\n")
+                output.write("pos_cls_weight = " + str(solution.variables[4]) + "\n")
+                output.write("neg_cls_weight = " + str(solution.variables[5]) + "\n")
+                output.write("\n")
+                output.write("=================================================")
+                output.write("\n")
+
+        print("Best auc so far : " + str(bestauc))
 
         solution.objectives[0] = total
 

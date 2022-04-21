@@ -12,6 +12,20 @@ from jmetal.util.evaluator import MultiprocessEvaluator
 from jmetal.util.evaluator import SparkEvaluator
 
 from jmetal.algorithm.singleobjective import GeneticAlgorithm
+import os
+
+# remove log files
+# tracks how many times GA fitness function has been invoked
+if os.path.exists("logs_fitness_function_invoked.txt"):
+    os.remove("logs_fitness_function_invoked.txt")
+
+# logs general logging comments
+if os.path.exists("logs_common.txt"):
+    os.remove("logs_common.txt")
+
+# logs reward for each run of fitness function
+if os.path.exists("reward.txt"):
+    os.remove("reward.txt")
 
 if __name__ == "__main__":
     problem = Mammogram(6)
@@ -35,6 +49,10 @@ if __name__ == "__main__":
     print("Solution: {}".format(result.variables))
     print("Fitness: {}".format(result.objectives[0]))
     print("Computing time: {}".format(algorithm.total_computing_time))
+
+    # Save results to file
+    print_function_values_to_file(result, "FUN." + algorithm.label)
+    print_variables_to_file(result, "VAR." + algorithm.label)
 
     # front = get_non_dominated_solutions([algorithm.get_result()])
     # plot_front = Plot(title='Pareto front approximation', axis_labels=['x', 'y'])
