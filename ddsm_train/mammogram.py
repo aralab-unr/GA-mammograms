@@ -37,7 +37,6 @@ class Mammogram(FloatProblem):
             featurewise_mean=44.33,
             patch_net='resnet50',
             block_type='resnet',
-            top_depths='512 512',
             batch_size=2,
             all_layer_epochs=4,
             load_val_ram=False,
