@@ -211,6 +211,5 @@ https://www.mytechmint.com/how-to-install-pyspark-with-java-8-on-ubuntu-18-04/
 2. update path in mammogram.py
 3. create pos/neg folders in test/val folders
 4. convert dicom images to png and save in pos/neg folders
-5. create modelFiles folder in ddsm_train folder to save all model files
 
 

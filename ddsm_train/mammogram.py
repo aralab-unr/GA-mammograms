@@ -69,7 +69,7 @@ class Mammogram(FloatProblem):
             es_patience=10,
             augmentation=False,
             nb_epoch = 0,
-            best_model = 'modelFiles/file_' + str(timesEvaluated) + '.h5'
+            best_model = 'NOSAVE'
         )
 
         print(total)
