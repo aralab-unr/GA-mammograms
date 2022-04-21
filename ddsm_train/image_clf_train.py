@@ -171,14 +171,14 @@ def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
     # Training report.
     if len(loss_hist) > 0:
         min_loss_locs, = np.where(loss_hist == min(loss_hist))
-        best_val_loss = loss_hist[min_loss_locs[0]]
+        # best_val_loss = loss_hist[min_loss_locs[0]]
         best_val_accuracy = acc_hist[min_loss_locs[0]]
         print("\n==== Training summary ====")
         print("Minimum val loss achieved at epoch:", min_loss_locs[0] + 1)
-        print("Best val loss:", best_val_loss)
+        # print("Best val loss:", best_val_loss)
         print("Best val accuracy:", best_val_accuracy)
         # return best validation accuracy for GA
-        return acc_hist[min_loss_locs[0]]
+        return best_val_accuracy
     else:
         return 0
 
