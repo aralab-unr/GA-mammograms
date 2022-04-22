@@ -1,8 +1,10 @@
 import math
+import time
 import random
 
-from jmetal.core.problem import BinaryProblem, FloatProblem
+from jmetal.core.problem import BinaryProblem, FloatProblem, Problem
 from jmetal.core.solution import BinarySolution, FloatSolution
+
 import image_clf_train
 
 timesEvaluated = 0
@@ -15,7 +17,7 @@ class Mammogram(FloatProblem):
         self.number_of_variables = number_of_variables
         self.number_of_constraints = 0
 
-        self.obj_directions = [self.MINIMIZE]
+        self.obj_directions = [self.MAXIMIZE]
         self.obj_labels = ["f(x)"]
 
         self.lower_bound = [0 for _ in range(number_of_variables)]
@@ -36,15 +38,6 @@ class Mammogram(FloatProblem):
             output.write(str(timesEvaluated) + "\n")
         print("Fitness function invoked " + str(timesEvaluated) + " times")
 
-        with open('logs_common.txt', 'a') as output:
-            output.write("======Setting Parameters value=========" + "\n")
-            output.write("weight_decay = " + str(solution.variables[0]))
-            output.write(" || weight_decay2 = " + str(solution.variables[1]))
-            output.write(" || init_lr = " + str(solution.variables[2]))
-            output.write(" || all_layer_multiplier = " + str(solution.variables[3]))
-            output.write(" || pos_cls_weight = " + str(solution.variables[4]))
-            output.write(" || neg_cls_weight = " + str(solution.variables[5]) + "\n")
-
         total = image_clf_train.run(
             train_dir=TRAIN_DIR,
             val_dir=VAL_DIR,
@@ -56,7 +49,7 @@ class Mammogram(FloatProblem):
             patch_net='resnet50',
             block_type='resnet',
             batch_size=2, #tweak this parameter for better performance
-            all_layer_epochs=4, #tweak this parameter for better performance
+            all_layer_epochs=10, #tweak this parameter for better performance
             load_val_ram=False,
             load_train_ram=False,
             weight_decay = solution.variables[0],
@@ -72,15 +65,38 @@ class Mammogram(FloatProblem):
             best_model = 'NOSAVE'
         )
 
+        # weight_decay = solution.variables[0],
+        # weight_decay2 = solution.variables[1],
+        # init_lr = solution.variables[2],
+        # all_layer_multiplier = solution.variables[3],
+        # pos_cls_weight = solution.variables[4],
+        # neg_cls_weight = solution.variables[5],
+
+        # weight_decay = 0.0001,
+        # weight_decay2 = 0.0001,
+        # init_lr = 0.01,
+        # all_layer_multiplier = 0.1,
+        # pos_cls_weight = 1,
+        # neg_cls_weight = 1,
+
         print(total)
+
+        with open('logs_common.txt', 'a') as output:
+            output.write("======Setting Parameters value=========" + "\n")
+            output.write("weight_decay = " + str(solution.variables[0]))
+            output.write(" || weight_decay2 = " + str(solution.variables[1]))
+            output.write(" || init_lr = " + str(solution.variables[2]))
+            output.write(" || all_layer_multiplier = " + str(solution.variables[3]))
+            output.write(" || pos_cls_weight = " + str(solution.variables[4]))
+            output.write(" || neg_cls_weight = " + str(solution.variables[5]) + "\n")
 
         with open('logs_common.txt', 'a') as output:
             output.write("AUC calculated " + str(total) + "\n")
 
         global bestauc
-        if bestauc == -1:
+        if bestauc == -1 and total != 0.0:
             bestauc = total
-        if total >= bestauc:
+        if total >= bestauc and total != 0.0:
             bestauc = total
             with open('BestParameters.txt', 'a') as output:
                 output.write("AUC : " + str(bestauc) + "\n")
