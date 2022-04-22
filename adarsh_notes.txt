@@ -39,6 +39,13 @@ pip3 install "jmetalpy[distributed]"
 11. install java
 sudo apt install openjdk-8-jdk
 
+12. install python distributed
+sudo apt install python3-distributed
+
+13. install ipython
+sudo apt install ipython
+
+
 cd workspace/GA-mammograms/ddsm_train/
 
 =========================================================================================
@@ -211,5 +218,11 @@ https://www.mytechmint.com/how-to-install-pyspark-with-java-8-on-ubuntu-18-04/
 2. update path in mammogram.py
 3. create pos/neg folders in test/val folders
 4. convert dicom images to png and save in pos/neg folders
+
+
+-----Steps to use python dask scheduler
+1. run dask-schduler on one machine-1
+2. run dask-worker on remaining machines - dask-worker <Address from dash-scheduler>
+3. run
 
 

@@ -42,8 +42,12 @@ if __name__ == "__main__":
         population_evaluator=SparkEvaluator(processes=6)
     )
 
-    # # setup Dask client
-    # client = Client(LocalCluster(n_workers=24))
+    # setup Dask client
+    # client = Client(LocalCluster(
+    #     n_workers=1,
+    #     processes=False
+    # )) #change number of machines in the cluster
+    #
     #
     # ncores = sum(client.ncores().values())
     # print(f'{ncores} cores available')
