@@ -10,8 +10,9 @@ from jmetal.util.solution import get_non_dominated_solutions, print_function_val
 from jmetal.util.evaluator import MapEvaluator
 from jmetal.util.evaluator import MultiprocessEvaluator
 from jmetal.util.evaluator import SparkEvaluator
-
-from jmetal.algorithm.singleobjective import GeneticAlgorithm
+from dask.distributed import Client
+from distributed import LocalCluster
+from genetic_algorithm import GeneticAlgorithm, DistributedGeneticAlgorithm
 import os
 
 # remove log files
@@ -33,13 +34,32 @@ if __name__ == "__main__":
     algorithm = GeneticAlgorithm(
         problem=problem,
         population_size=100,
-        offspring_population_size=100,
+        offspring_population_size=50,
         selection=BinaryTournamentSelection(),
         mutation=PolynomialMutation(probability=1.0 / problem.number_of_variables, distribution_index=20),
         crossover=SBXCrossover(probability=1.0, distribution_index=20),
         termination_criterion=StoppingByEvaluations(max_evaluations=4000),
         population_evaluator=SparkEvaluator(processes=6)
     )
+
+    # # setup Dask client
+    # client = Client(LocalCluster(n_workers=24))
+    #
+    # ncores = sum(client.ncores().values())
+    # print(f'{ncores} cores available')
+    #
+    # # creates the algorithm
+    # max_evaluations = 25000
+    #
+    # algorithm = DistributedGeneticAlgorithm(
+    #     problem=problem,
+    #     population_size=100,
+    #     mutation=PolynomialMutation(probability=1.0 / problem.number_of_variables, distribution_index=20),
+    #     crossover=SBXCrossover(probability=1.0, distribution_index=20),
+    #     termination_criterion=StoppingByEvaluations(max=4000),
+    #     number_of_cores=ncores,
+    #     client=client
+    # )
 
     algorithm.run()
     result = algorithm.get_result()
