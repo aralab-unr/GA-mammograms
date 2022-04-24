@@ -256,3 +256,18 @@ dask-scheduler, version 2021.6.0
 watch -n 5 free -m
 
 
+--Action items (4/24/2022):
+1. save jmetal source code
+2. Plot generation wise results
+3. increase number of epochs
+4. increase population size
+
+--New GA (4/24/2022)
+1. parallel
+2. distributed
+3. using new operators
+4. setup local cluster at home with two computers connected via network switch
+5. using python3-stributed package for dask
+6. using dask-scheduler to connect multiple dask-workers on network
+
+
