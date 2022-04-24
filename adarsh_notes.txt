@@ -7,6 +7,11 @@ sudo apt install virtualenv
 virtualenv -p python py-keras
 source py-keras/bin/activate
 
+--for conda setup
+conda create -n test distributed=2021.6.0 click=7.0
+source ~/anaconda3/etc/profile.d/conda.sh
+conda activate test
+
 pip3 install -q -U pip setuptools wheel
 
 2. Install Keras
@@ -14,6 +19,9 @@ pip3 install keras==2.0.8
 
 3. Install tensorflow
 pip3 install tensorflow==1.3
+
+--for conda setup
+pip3 install tensorflow==1.15.5
 
 4. Install opencv
 pip3 install opencv-python==4.2.0.32
@@ -232,7 +240,13 @@ https://www.mytechmint.com/how-to-install-pyspark-with-java-8-on-ubuntu-18-04/
 3. run function with .compute()
 
 
-$ conda create -n test distributed=2021.6.0 click=8.0.1
+$ conda create -n test distributed=2021.6.0 click=8.0.1 # this one worked
+-tensorflow=1.3 not installing
+
+conda create -n test6 distributed=2021.6.0 click=7.0 # this one worked
+-pip3 install tensorflow==1.15.5
+
+
 source ~/anaconda3/etc/profile.d/conda.sh
 $ conda activate test
 $ dask-scheduler --version

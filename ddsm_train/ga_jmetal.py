@@ -32,7 +32,7 @@ if os.path.exists("reward.txt"):
 if __name__ == "__main__":
     problem = Mammogram(6)
 
-    client=Client('tcp://192.168.0.123:8786')
+    client=Client('tcp://192.168.0.152:8786')
     algorithm = GeneticAlgorithm(
         problem=problem,
         population_size=100,
