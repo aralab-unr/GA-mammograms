@@ -13,6 +13,7 @@ from jmetal.util.evaluator import SparkEvaluator
 from dask.distributed import Client
 from distributed import LocalCluster
 from genetic_algorithm import GeneticAlgorithm, DistributedGeneticAlgorithm
+
 import os
 
 # remove log files
@@ -31,6 +32,7 @@ if os.path.exists("reward.txt"):
 if __name__ == "__main__":
     problem = Mammogram(6)
 
+    client=Client('tcp://192.168.0.123:8786')
     algorithm = GeneticAlgorithm(
         problem=problem,
         population_size=100,
@@ -68,7 +70,7 @@ if __name__ == "__main__":
     #     client=client
     # )
 
-    algorithm.run()
+    algorithm.run().compute()
     result = algorithm.get_result()
 
     print("Algorithm: {}".format(algorithm.get_name()))

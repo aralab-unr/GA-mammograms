@@ -1,6 +1,6 @@
 Some setup notes:
 
-1. Create virtual env
+1. Create virtual env or Conda(preferred, see notes below)
 mkdir virtualenv
 cd virtualenv/
 sudo apt install virtualenv
@@ -44,6 +44,12 @@ sudo apt install python3-distributed
 
 13. install ipython
 sudo apt install ipython
+
+14. install conda
+https://www.digitalocean.com/community/tutorials/how-to-install-anaconda-on-ubuntu-18-04-quickstart
+download conda sh script from https://www.anaconda.com/distribution/
+go to download folder
+bash <anaconda sh file name>
 
 
 cd workspace/GA-mammograms/ddsm_train/
@@ -223,6 +229,16 @@ https://www.mytechmint.com/how-to-install-pyspark-with-java-8-on-ubuntu-18-04/
 -----Steps to use python dask scheduler
 1. run dask-schduler on one machine-1
 2. run dask-worker on remaining machines - dask-worker <Address from dash-scheduler>
-3. run
+3. run function with .compute()
+
+
+$ conda create -n test distributed=2021.6.0 click=8.0.1
+source ~/anaconda3/etc/profile.d/conda.sh
+$ conda activate test
+$ dask-scheduler --version
+dask-scheduler, version 2021.6.0
+
+-Monitor Ram usage
+watch -n 5 free -m
 
 
