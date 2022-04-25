@@ -275,5 +275,7 @@ top
 5. using python3-stributed package for dask
 6. using dask-scheduler to connect multiple dask-workers on network
 7. using 24 cores of cpu (12 cores on each computer)
+8. dashboard monitor to check diagonstic information like cpu/memory usage
+9. Per epoch speed increased, even with more number of images
 
 
