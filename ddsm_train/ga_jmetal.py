@@ -48,7 +48,7 @@ if __name__ == "__main__":
         mutation=PolynomialMutation(probability=1.0 / problem.number_of_variables, distribution_index=20),
         crossover=SBXCrossover(probability=1.0, distribution_index=20),
         termination_criterion=StoppingByEvaluations(max_evaluations=4000),
-        population_evaluator=SparkEvaluator(processes=2)
+        population_evaluator=SparkEvaluator(processes=24)
     )
 
     # setup Dask client
