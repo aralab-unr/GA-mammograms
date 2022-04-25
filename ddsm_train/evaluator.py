@@ -58,19 +58,26 @@ class MultiprocessEvaluator(Evaluator[S]):
 class SparkEvaluator(Evaluator[S]):
     def __init__(self, processes: int = 8):
         self.spark_conf = SparkConf()\
-            .set("spark.driver.maxResultSize", "6g")\
+            .set("spark.driver.maxResultSize", "12g")\
             .set("spark.default.parallelism", "500")\
             .setAppName("jmetalpy")\
             .setMaster(f"local[{processes}]")
-        self.spark_context = SparkContext(conf=self.spark_conf)
+        # self.spark_context = SparkContext(conf=self.spark_conf)
 
-        logger = self.spark_context._jvm.org.apache.log4j
-        logger.LogManager.getLogger("org").setLevel(logger.Level.WARN)
+        # logger = self.spark_context._jvm.org.apache.log4j
+        # logger.LogManager.getLogger("org").setLevel(logger.Level.WARN)
 
     def evaluate(self, solution_list: List[S], problem: Problem) -> List[S]:
-        solutions_to_evaluate = self.spark_context.parallelize(solution_list)
+        spark_context = SparkContext(conf=self.spark_conf)
 
-        return solutions_to_evaluate.map(lambda s: problem.evaluate(s)).collect()
+        logger = spark_context._jvm.org.apache.log4j
+        logger.LogManager.getLogger("org").setLevel(logger.Level.WARN)
+
+        spark_context.setCheckpointDir("spark_checkpoint_location")
+        solutions_to_evaluate = spark_context.parallelize(solution_list)
+        return_result = solutions_to_evaluate.map(lambda s: problem.evaluate(s)).collect()
+        spark_context.stop()
+        return return_result
 
 
 def evaluate_solution(solution, problem):

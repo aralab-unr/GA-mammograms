@@ -1,7 +1,7 @@
 from typing import List, TypeVar
 
 from jmetal.config import store
-from jmetal.core.algorithm import EvolutionaryAlgorithm
+from algorithm import EvolutionaryAlgorithm
 from jmetal.core.operator import Crossover, Mutation, Selection
 from jmetal.core.problem import Problem
 from jmetal.util.evaluator import Evaluator
