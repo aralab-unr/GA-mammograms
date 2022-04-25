@@ -262,10 +262,12 @@ top
 
 
 --Action items (4/24/2022):
-1. save jmetal source code
+1. save jmetal source code - Done
 2. Plot generation wise results
-3. increase number of epochs
-4. increase population size
+3. increase number of epochs - set to 10
+4. increase population size - set to 100
+5. offspring population - set to 50
+6. Set range of values of parameters - currently system is taking more than 10 digits after decimal
 
 --New GA (4/24/2022)
 1. parallel - 24 processes at one time
@@ -277,5 +279,13 @@ top
 7. using 24 cores of cpu (12 cores on each computer)
 8. dashboard monitor to check diagonstic information like cpu/memory usage
 9. Per epoch speed increased, even with more number of images
+
+
+--challenges (4/24/2022)
+1. setting up cluster using network switch (computers on dr. louis cluster were too slow and had version problems)
+2. dask distributed version on different computers
+3. tensorflow version selection
+4. selecting python version that works on both distributed and tensorflow
+5. finding suitable number of parallel processes possible (24 processes at a time did not workn then reduced to 12)
 
 
