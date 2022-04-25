@@ -27,6 +27,7 @@ class Mammogram(FloatProblem):
         FloatSolution.upper_bound = self.upper_bound
 
     def evaluate(self, solution: FloatSolution) -> FloatSolution:
+        # start_time = time.time()
         TRAIN_DIR = "Inbreast/train"
         VAL_DIR = "Inbreast/val"
         TEST_DIR = "Inbreast/test"
@@ -90,8 +91,12 @@ class Mammogram(FloatProblem):
             output.write(" || pos_cls_weight = " + str(solution.variables[4]))
             output.write(" || neg_cls_weight = " + str(solution.variables[5]) + "\n")
 
+        # programExecutionTime = time.time() - start_time  # seconds
+        # programExecutionTime = programExecutionTime / (60)  # minutes
         with open('logs_common.txt', 'a') as output:
             output.write("AUC calculated " + str(total) + "\n")
+            # output.write("======Run " + str(timesEvaluated) + " took " + str(
+            #     programExecutionTime) + " minutes to complete=========" + "\n")
 
         global bestauc
         if bestauc == -1 and total != 0.0:

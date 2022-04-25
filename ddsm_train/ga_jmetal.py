@@ -9,7 +9,7 @@ from jmetal.util.solution import get_non_dominated_solutions, print_function_val
     print_variables_to_file
 from jmetal.util.evaluator import MapEvaluator
 from jmetal.util.evaluator import MultiprocessEvaluator
-from jmetal.util.evaluator import SparkEvaluator
+from evaluator import SparkEvaluator, DaskEvaluator
 from dask.distributed import Client
 from distributed import LocalCluster
 from genetic_algorithm import GeneticAlgorithm, DistributedGeneticAlgorithm
@@ -44,7 +44,7 @@ if __name__ == "__main__":
         mutation=PolynomialMutation(probability=1.0 / problem.number_of_variables, distribution_index=20),
         crossover=SBXCrossover(probability=1.0, distribution_index=20),
         termination_criterion=StoppingByEvaluations(max_evaluations=4000),
-        population_evaluator=SparkEvaluator(processes=12)
+        population_evaluator=SparkEvaluator(processes=24)
     )
 
     # setup Dask client
