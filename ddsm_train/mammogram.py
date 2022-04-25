@@ -32,12 +32,6 @@ class Mammogram(FloatProblem):
         TEST_DIR = "Inbreast/test"
         BEST_MODEL = "ddsm_vgg16_s10_[512-512-1024]x2_hybrid.h5"
 
-        global timesEvaluated
-        timesEvaluated += 1
-        with open('logs_fitness_function_invoked.txt', 'a') as output:
-            output.write(str(timesEvaluated) + "\n")
-        print("Fitness function invoked " + str(timesEvaluated) + " times")
-
         total = image_clf_train.run(
             train_dir=TRAIN_DIR,
             val_dir=VAL_DIR,
@@ -80,6 +74,12 @@ class Mammogram(FloatProblem):
         # neg_cls_weight = 1,
 
         print(total)
+
+        global timesEvaluated
+        timesEvaluated += 1
+        with open('logs_fitness_function_invoked.txt', 'a') as output:
+            output.write(str(timesEvaluated) + "\n")
+        print("Fitness function invoked " + str(timesEvaluated) + " times")
 
         with open('logs_common.txt', 'a') as output:
             output.write("======Setting Parameters value=========" + "\n")
