@@ -59,6 +59,8 @@ download conda sh script from https://www.anaconda.com/distribution/
 go to download folder
 bash <anaconda sh file name>
 
+15. install xgboost
+pip3 install xgboost
 
 cd workspace/GA-mammograms/ddsm_train/
 
@@ -255,6 +257,9 @@ dask-scheduler, version 2021.6.0
 -Monitor Ram usage
 watch -n 5 free -m
 
+-Monitor CPU usage
+top
+
 
 --Action items (4/24/2022):
 1. save jmetal source code
@@ -263,11 +268,12 @@ watch -n 5 free -m
 4. increase population size
 
 --New GA (4/24/2022)
-1. parallel
+1. parallel - 24 processes at one time
 2. distributed
 3. using new operators
 4. setup local cluster at home with two computers connected via network switch
 5. using python3-stributed package for dask
 6. using dask-scheduler to connect multiple dask-workers on network
+7. using 24 cores of cpu (12 cores on each computer)
 
 
