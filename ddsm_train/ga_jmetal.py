@@ -38,7 +38,7 @@ if os.path.exists("generation_stats.txt"):
 if __name__ == "__main__":
     problem = Mammogram(6)
 
-    dask.config.set(scheduler='threads')
+    # dask.config.set(scheduler='threads')
     client=Client('tcp://192.168.0.124:8786')
     algorithm = GeneticAlgorithm(
         problem=problem,
