@@ -10,9 +10,10 @@ from jmetal.util.solution import get_non_dominated_solutions, print_function_val
 from jmetal.util.evaluator import MapEvaluator
 from jmetal.util.evaluator import MultiprocessEvaluator
 from evaluator import SparkEvaluator, DaskEvaluator
-from dask.distributed import Client
+from dask.distributed import Client, SSHCluster
 from distributed import LocalCluster
 from genetic_algorithm import GeneticAlgorithm, DistributedGeneticAlgorithm
+import asyncssh
 import dask
 import dask.dataframe as df
 
@@ -38,8 +39,9 @@ if os.path.exists("generation_stats.txt"):
 if __name__ == "__main__":
     problem = Mammogram(6)
 
-    # dask.config.set(scheduler='threads')
-    client=Client('tcp://192.168.0.124:8786')
+    cluster = SSHCluster(
+        ["localhost", "192.168.0.124"])
+    client=Client(cluster)
     algorithm = GeneticAlgorithm(
         problem=problem,
         population_size=100,

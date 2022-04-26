@@ -62,6 +62,17 @@ bash <anaconda sh file name>
 15. install xgboost
 pip3 install xgboost
 
+14. install paramiko
+pip3 install paramiko
+
+15. install openssh-server - helps to enable ssh
+sudo apt install openssh-server
+sudo ufw allow ssh
+
+16. install asyncssh
+pip3 install asyncssh
+
+
 cd workspace/GA-mammograms/ddsm_train/
 
 =========================================================================================
