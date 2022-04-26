@@ -63,22 +63,15 @@ class SparkEvaluator(Evaluator[S]):
             .set("spark.driver.allowMultipleContexts", "true")\
             .setAppName("jmetalpy")\
             .setMaster(f"local[{processes}]")
-        # self.spark_context = SparkContext(conf=self.spark_conf)
-
-        # logger = self.spark_context._jvm.org.apache.log4j
-        # logger.LogManager.getLogger("org").setLevel(logger.Level.WARN)
-
-    def evaluate(self, solution_list: List[S], problem: Problem) -> List[S]:
-        spark_context = SparkContext(conf=self.spark_conf)
-
-        logger = spark_context._jvm.org.apache.log4j
+        self.spark_context = SparkContext(conf=self.spark_conf)
+        self.spark_context.setCheckpointDir("spark_checkpoint_location")
+        logger = self.spark_context._jvm.org.apache.log4j
         logger.LogManager.getLogger("org").setLevel(logger.Level.WARN)
 
-        spark_context.setCheckpointDir("spark_checkpoint_location")
-        solutions_to_evaluate = spark_context.parallelize(solution_list)
-        return_result = solutions_to_evaluate.map(lambda s: problem.evaluate(s)).collect()
-        spark_context.stop()
-        return return_result
+    def evaluate(self, solution_list: List[S], problem: Problem) -> List[S]:
+        solutions_to_evaluate = self.spark_context.parallelize(solution_list)
+        
+        return solutions_to_evaluate.map(lambda s: problem.evaluate(s)).collect()
 
 
 def evaluate_solution(solution, problem):
