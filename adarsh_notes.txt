@@ -300,3 +300,15 @@ top
 5. finding suitable number of parallel processes possible (24 processes at a time did not workn then reduced to 12)
 
 
+-- setting up ssh cluster
+1. to connect to localhost
+try ssh localhost, accept the key
+
+ssh-keygen
+ssh-copy-id -i root@ip_address
+ssh root@ip_address
+
+2. follow same for other ssh machines
+
+
+
