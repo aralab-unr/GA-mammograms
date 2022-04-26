@@ -40,7 +40,8 @@ if __name__ == "__main__":
     problem = Mammogram(6)
 
     cluster = SSHCluster(
-        ["localhost", "localhost", "192.168.0.124"])
+        ["192.168.0.124", "localhost", "192.168.0.124"],
+        connect_options={"username": "adarshsehgal", "known_hosts": None})
     client=Client(cluster)
     algorithm = GeneticAlgorithm(
         problem=problem,

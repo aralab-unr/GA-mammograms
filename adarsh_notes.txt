@@ -72,6 +72,9 @@ sudo ufw allow ssh
 16. install asyncssh
 pip3 install asyncssh
 
+17. install jupyter-server-proxy
+pip3 install jupyter-server-proxy
+
 
 cd workspace/GA-mammograms/ddsm_train/
 
@@ -309,6 +312,9 @@ ssh-copy-id -i root@ip_address
 ssh root@ip_address
 
 2. follow same for other ssh machines
+
+--kill processes on port 8786
+sudo lsof -t -i tcp:8786 | xargs kill -9
 
 
 
