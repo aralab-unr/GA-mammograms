@@ -58,7 +58,8 @@ class MultiprocessEvaluator(Evaluator[S]):
 class SparkEvaluator(Evaluator[S]):
     def __init__(self, processes: int = 8):
         self.spark_conf = SparkConf()\
-            .set("spark.driver.maxResultSize", "8g")\
+            .set("spark.driver.maxResultSize", "8g") \
+            .set("spark.default.parallelism", "500") \
             .set("spark.driver.allowMultipleContexts", "true")\
             .setAppName("jmetalpy")\
             .setMaster(f"local[{processes}]")
