@@ -45,7 +45,7 @@ if __name__ == "__main__":
     client=Client(cluster)
     algorithm = GeneticAlgorithm(
         problem=problem,
-        population_size=100,
+        population_size=50,
         offspring_population_size=50,
         selection=BinaryTournamentSelection(),
         mutation=PolynomialMutation(probability=1.0 / problem.number_of_variables, distribution_index=20),
