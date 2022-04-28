@@ -150,6 +150,16 @@ $ ./sbin/stop-all.sh
 26. submit to spark
 ./bin/spark-submit   --master spark://adarshsehgal-Alienware-Aurora-R7:7077  /home/adarshsehgal/workspace/GA-mammograms/ddsm_train/ga_jmetal.py
 
+27. install dependencies in local ubuntu
+sudo apt-get install python3-pip
+pip3 install Cython
+sudo apt install python-dev
+sudo apt install gfortran
+sudo apt-get install python3.7-dev
+pip3 install numpy
+pip3 install pybind11
+pip3 install -q -U pip setuptools wheel
+pip3 install scipy
 
 =========================================================================================
 Some IMPORTANT points:
