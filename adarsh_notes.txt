@@ -147,8 +147,13 @@ To stop the spark cluster, run the following command on master.
 $ cd /usr/local/spark
 $ ./sbin/stop-all.sh
 
-26. submit to spark
-./bin/spark-submit   --master spark://adarshsehgal-Alienware-Aurora-R7:7077  /home/adarshsehgal/workspace/GA-mammograms/ddsm_train/ga_jmetal.py
+26. submit to spark (or just run python3 ga_jmetal.py)
+send conda environment with spark.submit
+conda pack -o test7_env.tar.gz
+
+./bin/spark-submit   --master spark://adarshsehgal-ubuntu-18-2:7077 \
+ --archives /home/adarshsehgal/workspace/GA-mammograms/ddsm_train/test7_env.tar.gz#environment \
+ /home/adarshsehgal/workspace/GA-mammograms/ddsm_train/ga_jmetal.py
 
 27. install dependencies in local ubuntu
 sudo apt-get install python3-pip

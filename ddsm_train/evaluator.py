@@ -67,10 +67,11 @@ class SparkEvaluator(Evaluator[S]):
             .set("spark.task.cpus", "2") \
             .setAppName("jmetalpy") \
             .setMaster("spark://adarshsehgal-ubuntu-18-2:7077")
+        # .set("spark.executor.memory", "20g") \
         self.spark_context = SparkContext(conf=self.spark_conf)
 
         #adding this to avoid no module found error in pickle
-        self.spark_context.addPyFile('jMetalPy.zip')
+        self.spark_context.addPyFile('/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/jMetalPy.zip')
 
         self.spark_context.setCheckpointDir("spark_checkpoint_location")
         logger = self.spark_context._jvm.org.apache.log4j
