@@ -28,10 +28,10 @@ class Mammogram(FloatProblem):
 
     def evaluate(self, solution: FloatSolution) -> FloatSolution:
         # start_time = time.time()
-        TRAIN_DIR = "Inbreast/train"
-        VAL_DIR = "Inbreast/val"
-        TEST_DIR = "Inbreast/test"
-        BEST_MODEL = "ddsm_vgg16_s10_[512-512-1024]x2_hybrid.h5"
+        TRAIN_DIR = "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/Inbreast/train"
+        VAL_DIR = "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/Inbreast/val"
+        TEST_DIR = "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/Inbreast/test"
+        BEST_MODEL = "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/ddsm_vgg16_s10_[512-512-1024]x2_hybrid.h5"
 
         total = image_clf_train.run(
             train_dir=TRAIN_DIR,

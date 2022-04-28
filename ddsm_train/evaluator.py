@@ -65,8 +65,7 @@ class SparkEvaluator(Evaluator[S]):
             .set("spark.driver.cores", "4") \
             .set("spark.driver.supervise", "true") \
             .set("spark.task.cpus", "2") \
-            .setAppName("jmetalpy")\
-            .setMaster(f"local[{processes}]")
+            .setAppName("jmetalpy")
         self.spark_context = SparkContext(conf=self.spark_conf)
         self.spark_context.setCheckpointDir("spark_checkpoint_location")
         logger = self.spark_context._jvm.org.apache.log4j

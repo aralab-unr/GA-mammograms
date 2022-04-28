@@ -352,6 +352,16 @@ https://dzone.com/articles/setting-up-multi-node-hadoop-cluster-just-got-easy-2
 IMportant steps to setup spark cluster
 https://medium.com/ymedialabs-innovation/apache-spark-on-a-multi-node-cluster-b75967c8cb2b
 
+--running python file on already  built spark cluster
+./bin/spark-submit   --master spark://192.168.0.152:7077   /home/adarshsehgal/workspace/GA-mammograms/ddsm_train/ga_jmetal.py
+./bin/spark-submit   --master spark://adarshsehgal-Alienware-Aurora-R7:7077  /home/adarshsehgal/workspace/GA-mammograms/ddsm_train/ga_jmetal.py
+
+--setup hadoop yarn
+https://phoenixnap.com/kb/install-hadoop-ubuntu
+
+--install python3.7 on ubuntu 18
+https://linuxize.com/post/how-to-install-python-3-7-on-ubuntu-18-04/
+
 
 
 
