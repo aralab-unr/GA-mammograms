@@ -7,10 +7,17 @@ sudo apt install virtualenv
 virtualenv -p python py-keras
 source py-keras/bin/activate
 
+---install conda
+https://www.digitalocean.com/community/tutorials/how-to-install-anaconda-on-ubuntu-18-04-quickstart
+download conda sh script from https://www.anaconda.com/distribution/
+go to download folder
+bash <anaconda sh file name>
+
 --for conda setup
-conda create -n test distributed=2021.6.0 click=7.0
 source ~/anaconda3/etc/profile.d/conda.sh
-conda activate test
+conda config --set auto_activate_base false
+conda create -n test6 distributed=2021.6.0 click=7.0
+conda activate test6
 
 pip3 install -q -U pip setuptools wheel
 
@@ -53,11 +60,7 @@ sudo apt install python3-distributed
 13. install ipython
 sudo apt install ipython
 
-14. install conda
-https://www.digitalocean.com/community/tutorials/how-to-install-anaconda-on-ubuntu-18-04-quickstart
-download conda sh script from https://www.anaconda.com/distribution/
-go to download folder
-bash <anaconda sh file name>
+
 
 15. install xgboost
 pip3 install xgboost
@@ -85,12 +88,68 @@ PermitRootLogin without-password
 to
 
 PermitRootLogin yes
+PasswordAuthentication yes
+
 And restart the SSH server:
 
 sudo service ssh restart
 
+20. Update python3 version to 3.7 on ubuntu 18, outside conda environment
+https://dev.to/serhatteker/how-to-upgrade-to-python-3-7-on-ubuntu-18-04-18-10-5hab
 
-cd workspace/GA-mammograms/ddsm_train/
+21. setting up ssh cluster
+1. to connect to localhost
+try ssh localhost, accept the key
+try ssh root@localhost, accept the key
+
+do ^ for all workers and accept key
+
+-set root password
+sudo passwd
+
+ssh-keygen
+ssh-copy-id -i root@ip_address
+ssh root@ip_address
+
+22. Setup spark master
+help link: https://stackoverflow.com/questions/33150147/master-must-start-with-yarn-spark
+https://medium.com/ymedialabs-innovation/apache-spark-on-a-multi-node-cluster-b75967c8cb2b
+https://spark.apache.org/downloads.html
+
+Edit hosts file.
+$ sudo gedit /etc/hosts
+Now add entries of master and slaves in hosts file.
+<MASTER-IP> master
+<SLAVE01-IP> slave01
+<SLAVE02-IP> slave02
+
+23.
+$ cd ~/Downloads
+$ wget -c https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
+$ cd /tmp
+$ tar zxf ~/Downloads/spark-3.2.1-bin-hadoop3.2.tgz
+sudo mv spark-3.2.1-bin-hadoop3.2 /usr/local/spark
+$ cd /usr/local/spark/conf
+
+24.
+sudo gedit slaves
+-And add the following entries.
+master
+slave01
+slave02
+
+25.
+Start Spark Cluster
+$ cd /usr/local/spark
+$ ./sbin/start-all.sh
+
+To stop the spark cluster, run the following command on master.
+$ cd /usr/local/spark
+$ ./sbin/stop-all.sh
+
+26. submit to spark
+./bin/spark-submit   --master spark://adarshsehgal-Alienware-Aurora-R7:7077  /home/adarshsehgal/workspace/GA-mammograms/ddsm_train/ga_jmetal.py
+
 
 =========================================================================================
 Some IMPORTANT points:
