@@ -436,6 +436,16 @@ https://phoenixnap.com/kb/install-hadoop-ubuntu
 --install python3.7 on ubuntu 18
 https://linuxize.com/post/how-to-install-python-3-7-on-ubuntu-18-04/
 
+==================================================================
+KNOWN ERRORS
+
+--File "/usr/lib/python3/dist-packages/toolz/functoolz.py", line 501
+    f.__name__ for f in reversed((self.first,) + self.funcs),
+    ^
+SyntaxError: Generator expression must be parenthesized
+
+SOLUTION: use functoolz.py file in ddsm_train folder
+
 
 
 

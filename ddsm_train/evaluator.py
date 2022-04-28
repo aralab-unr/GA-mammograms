@@ -66,8 +66,9 @@ class SparkEvaluator(Evaluator[S]):
             .set("spark.driver.supervise", "true") \
             .set("spark.task.cpus", "2") \
             .setAppName("jmetalpy") \
+            .set("spark.executor.memory", "20g") \
             .setMaster("spark://adarshsehgal-ubuntu-18-2:7077")
-        # .set("spark.executor.memory", "20g") \
+
         self.spark_context = SparkContext(conf=self.spark_conf)
 
         #adding this to avoid no module found error in pickle
