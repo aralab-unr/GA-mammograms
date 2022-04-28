@@ -39,10 +39,10 @@ if os.path.exists("generation_stats.txt"):
 if __name__ == "__main__":
     problem = Mammogram(6)
 
-    cluster = SSHCluster(
-        ["192.168.0.124", "localhost", "192.168.0.124"],
-        connect_options={"username": "adarshsehgal", "known_hosts": None})
-    client=Client(cluster)
+    # cluster = SSHCluster(
+    #     ["192.168.0.124", "localhost", "192.168.0.124"],
+    #     connect_options={"username": "adarshsehgal", "known_hosts": None})
+    # client=Client(cluster)
     algorithm = GeneticAlgorithm(
         problem=problem,
         population_size=50,
@@ -51,7 +51,7 @@ if __name__ == "__main__":
         mutation=PolynomialMutation(probability=1.0 / problem.number_of_variables, distribution_index=20),
         crossover=SBXCrossover(probability=1.0, distribution_index=20),
         termination_criterion=StoppingByEvaluations(max_evaluations=4000),
-        population_evaluator=SparkEvaluator(processes=5)
+        population_evaluator=SparkEvaluator(processes=4)
     )
 
     # setup Dask client
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     #     client=client
     # )
 
-    client.compute(algorithm.run())
+    algorithm.run()
     # algorithm.run().compute()
     result = algorithm.get_result()
 

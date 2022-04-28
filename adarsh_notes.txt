@@ -75,6 +75,20 @@ pip3 install asyncssh
 17. install jupyter-server-proxy
 pip3 install jupyter-server-proxy
 
+18. install yarn - cluster manager
+sudo apt install yarn
+
+19. Allow root ssh login
+The default setting in Debian (and hence Ubuntu) for OpenSSH Server is to deny password-based login for root and allow only key-based login. Change this line in /etc/ssh/sshd_config:
+
+PermitRootLogin without-password
+to
+
+PermitRootLogin yes
+And restart the SSH server:
+
+sudo service ssh restart
+
 
 cd workspace/GA-mammograms/ddsm_train/
 
@@ -315,6 +329,29 @@ ssh root@ip_address
 
 --kill processes on port 8786
 sudo lsof -t -i tcp:8786 | xargs kill -9
+
+----------------------------------
+Setup spark master
+help link: https://stackoverflow.com/questions/33150147/master-must-start-with-yarn-spark
+
+$ cd ~/Downloads
+$ wget -c https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
+$ cd /tmp
+$ tar zxf ~/Downloads/spark-3.2.1-bin-hadoop3.2.tgz
+$ cd spark-3.2.1-bin-hadoop3.2/
+
+-start master
+$ sbin/start-master.sh
+
+-start slave
+$ sbin/start-slave.sh --master spark://ego-server:7077
+
+-setting up spark cluster with hadoop
+https://dzone.com/articles/setting-up-multi-node-hadoop-cluster-just-got-easy-2
+
+IMportant steps to setup spark cluster
+https://medium.com/ymedialabs-innovation/apache-spark-on-a-multi-node-cluster-b75967c8cb2b
+
 
 
 
