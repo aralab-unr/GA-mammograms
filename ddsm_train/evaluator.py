@@ -59,13 +59,12 @@ class SparkEvaluator(Evaluator[S]):
     def __init__(self, processes: int = 8):
         self.spark_conf = SparkConf()\
             .setAppName("jmetalpy") \
-            .set("spark.task.cpus", "1") \
-            .set("spark.default.parallelism", "20") \
+            .set("spark.task.cpus", "5") \
+            .set("spark.default.parallelism", "4") \
             .set("spark.acls.enable", "false") \
             .set("spark.modify.acls", "adarshsehgal") \
+            .set("spark.executor.memory", "20g") \
             .setMaster("spark://192.168.0.152:7077")
-
-            # .set("spark.executor.memory", "1g") \
 
 
             # .set("spark.driver.allowMultipleContexts", "true") \
