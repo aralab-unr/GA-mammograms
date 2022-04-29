@@ -166,6 +166,13 @@ pip3 install pybind11
 pip3 install -q -U pip setuptools wheel
 pip3 install scipy
 
+28. specify spark host name in conf file
+spark-env.sh in conf folder
+SPARK_MASTER_HOST=192.168.0.152
+
+29. edit /etc/hosts
+remove 12.0.1.1 entries from both master and worker
+
 =========================================================================================
 Some IMPORTANT points:
 1. MAIN SCRIPT FILE: train_image_clf_inbreast.sh

@@ -58,17 +58,23 @@ class MultiprocessEvaluator(Evaluator[S]):
 class SparkEvaluator(Evaluator[S]):
     def __init__(self, processes: int = 8):
         self.spark_conf = SparkConf()\
-            .set("spark.driver.maxResultSize", "0") \
-            .set("spark.default.parallelism", "500") \
-            .set("spark.driver.allowMultipleContexts", "true") \
-            .set("spark.submit.deployMode", "client") \
-            .set("spark.driver.cores", "4") \
-            .set("spark.driver.supervise", "true") \
-            .set("spark.task.cpus", "2") \
             .setAppName("jmetalpy") \
-            .set("spark.executor.memory", "20g") \
-            .setMaster("spark://adarshsehgal-ubuntu-18-2:7077")
+            .set("spark.task.cpus", "1") \
+            .set("spark.default.parallelism", "20") \
+            .set("spark.acls.enable", "false") \
+            .set("spark.modify.acls", "adarshsehgal") \
+            .setMaster("spark://192.168.0.152:7077")
 
+            # .set("spark.executor.memory", "1g") \
+
+
+            # .set("spark.driver.allowMultipleContexts", "true") \
+            # .set("spark.driver.maxResultSize", "0") \
+            #  \
+            #     .set("spark.submit.deployMode", "client") \
+            #     .set("spark.driver.cores", "4") \
+            #     .set("spark.driver.supervise", "true") \
+            #     .set("spark.task.cpus", "2") \
         self.spark_context = SparkContext(conf=self.spark_conf)
 
         #adding this to avoid no module found error in pickle
