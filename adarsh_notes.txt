@@ -137,6 +137,9 @@ sudo gedit slaves
 master
 slave01
 slave02
+slave02
+
+-- this shows two workers on each computer
 
 25.
 Start Spark Cluster
