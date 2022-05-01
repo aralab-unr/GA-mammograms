@@ -92,12 +92,13 @@ IMP: install cuda 10.0
 https://developer.nvidia.com/cuda-10.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=runfilelocal
 sudo sh cuda_10.0.130_410.48_linux.run
 
---extras
+--extras - Don't follow this
 wget https://developer.download.nvidia.com/compute/cuda/11.6.2/local_installers/cuda_11.6.2_510.47.03_linux.run
 sudo sh cuda_11.6.2_510.47.03_linux.run --toolkit --silent --override
 
 17. install CudaDNN
 IMP: install version 7.4 corresponding to tensorflow 1.15.5
+copy versions 7.4 and 7.6 cuDNN files to /usr/local/cuda
 https://towardsdatascience.com/deep-learning-gpu-installation-on-ubuntu-18-4-9b12230a1d31
 sudo apt-get install libcupti-dev
 
@@ -220,6 +221,18 @@ sudo intel_gpu_top
 
 32. install cuda toolkit
 sudo apt install nvidia-cuda-toolkit
+
+33. enable GPU for spark
+https://nvidia.github.io/spark-rapids/Getting-Started/
+https://github.com/apache/spark/blob/master/docs/spark-standalone.md#resource-allocation-and-configuration-overview
+https://nvidia.github.io/spark-rapids/docs/get-started/getting-started-on-prem.html
+
+jars can be downloaded from https://nvidia.github.io/spark-rapids/docs/download.html
+
+add to ~/.bashrc
+export SPARK_RAPIDS_DIR=/home/adarshsehgal/workspace/GA-mammograms/ddsm_train
+export SPARK_CUDF_JAR=${SPARK_RAPIDS_DIR}/cudf-0.14-cuda10-1.jar
+export SPARK_RAPIDS_PLUGIN_JAR=${SPARK_RAPIDS_DIR}/rapids-4-spark_2.12-0.1.0.jar
 
 =========================================================================================
 Some IMPORTANT points:

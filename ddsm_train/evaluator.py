@@ -59,13 +59,16 @@ class SparkEvaluator(Evaluator[S]):
     def __init__(self, processes: int = 8):
         self.spark_conf = SparkConf()\
             .setAppName("jmetalpy") \
-            .set("spark.task.cpus", "12") \
+            .set("spark.task.resource.gpu.amount", "1") \
+            .set("spark.default.parallelism", processes) \
             .set("spark.acls.enable", "false") \
             .set("spark.modify.acls", "adarshsehgal") \
-            .set("spark.executor.memory", "20g") \
+            .set("spark.executor.memory", "8g") \
+            .set("spark.executor.resource.gpu.discoveryScript", "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
+            .set("spark.driver.resource.gpu.discoveryScript", "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
             .setMaster("spark://192.168.0.152:7077")
 
-
+            # .set("spark.task.cpus", "12") \
             # .set("spark.driver.allowMultipleContexts", "true") \
             # .set("spark.driver.maxResultSize", "0") \
             #  \
