@@ -1,9 +1,9 @@
 import image_clf_train
 
-TRAIN_DIR = "/content/drive/MyDrive/GA-mammograms/test_run_images/train"
-VAL_DIR = "/content/drive/MyDrive/GA-mammograms/test_run_images/val"
-TEST_DIR = "/content/drive/MyDrive/GA-mammograms/test_run_images/test"
-BEST_MODEL = "/content/drive/MyDrive/GA-mammograms/ddsm_train/ddsm_vgg16_s10_[512-512-1024]x2_hybrid.h5"
+TRAIN_DIR = "Inbreast/train"
+VAL_DIR = "Inbreast/val"
+TEST_DIR = "Inbreast/test"
+BEST_MODEL = "ddsm_vgg16_s10_[512-512-1024]x2_hybrid.h5"
 
 # # original values run
 image_clf_train.run(
