@@ -63,11 +63,13 @@ class SparkEvaluator(Evaluator[S]):
             .set("spark.locality.wait", "0s") \
             .set("spark.sql.files.maxPartitionBytes", "512m") \
             .set("spark.plugins", "com.nvidia.spark.SQLPlugin") \
+            .set("spark.rapids.sql.enable", "true") \
             .set("spark.task.resource.gpu.amount", "0.25") \
             .set("spark.executor.resource.gpu.amount", "1") \
             .set("spark.worker.resource.gpu.amount", "1") \
+            .set("spark.driver.resource.gpu.amount", "1") \
             .set("spark.executor.cores", "1") \
-            .set("spark.task.cpus", "12") \
+            .set("spark.task.cpus", "1") \
             .set("spark.default.parallelism", processes) \
             .set("spark.acls.enable", "false") \
             .set("spark.modify.acls", "adarshsehgal") \
