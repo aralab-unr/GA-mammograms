@@ -68,8 +68,7 @@ class SparkEvaluator(Evaluator[S]):
             .set("spark.executor.resource.gpu.amount", "1") \
             .set("spark.worker.resource.gpu.amount", "1") \
             .set("spark.driver.resource.gpu.amount", "1") \
-            .set("spark.executor.cores", "1") \
-            .set("spark.task.cpus", "1") \
+            .set("spark.sql.sources.useV1SourceList", "") \
             .set("spark.default.parallelism", processes) \
             .set("spark.acls.enable", "false") \
             .set("spark.modify.acls", "adarshsehgal") \
@@ -80,10 +79,16 @@ class SparkEvaluator(Evaluator[S]):
             .set("spark.driver.resource.gpu.discoveryScript", "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
             .set("spark.worker.resource.gpu.discoveryScript",
                  "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
-            .set("spark.executor.extraClassPath", '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar:/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
-            .set("spark.driver.extraClassPath", '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar:/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
+            .set("spark.executor.extraClassPath", '/usr/local/cuda/lib64:'
+                                                  '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar:'
+                                                  '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
+            .set("spark.driver.extraClassPath", '/usr/local/cuda/lib64:'
+                                                '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar:'
+                                                '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
             .set("spark.worker.extraClassPath",
-                 '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar:/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
+                 '/usr/local/cuda/lib64:'
+                 '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar:'
+                 '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
             .setMaster("spark://192.168.0.152:7077")
 
             # .set("spark.task.cpus", "12") \
@@ -98,6 +103,7 @@ class SparkEvaluator(Evaluator[S]):
 
         #adding this to avoid no module found error in pickle
         self.spark_context.addPyFile('/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/jMetalPy.zip')
+        # self.spark_context.addPyFile('/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/xgboost4j_3.0-1.4.2-0.3.0.jar')
 
         self.spark_context.setCheckpointDir("spark_checkpoint_location")
         logger = self.spark_context._jvm.org.apache.log4j

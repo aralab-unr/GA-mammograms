@@ -4,7 +4,7 @@ import random
 
 from jmetal.core.problem import BinaryProblem, FloatProblem, Problem
 from jmetal.core.solution import BinarySolution, FloatSolution
-
+from keras import backend as K
 import image_clf_train
 
 timesEvaluated = 0
@@ -28,6 +28,7 @@ class Mammogram(FloatProblem):
 
     def evaluate(self, solution: FloatSolution) -> FloatSolution:
         # start_time = time.time()
+        K.clear_session()
         TRAIN_DIR = "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/Inbreast/train"
         VAL_DIR = "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/Inbreast/val"
         TEST_DIR = "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/Inbreast/test"
@@ -45,8 +46,8 @@ class Mammogram(FloatProblem):
             block_type='resnet',
             batch_size=2, #tweak this parameter for better performance
             all_layer_epochs=10, #tweak this parameter for better performance
-            load_val_ram=True,
-            load_train_ram=True,
+            load_val_ram=False,
+            load_train_ram=False,
             weight_decay = solution.variables[0],
             weight_decay2 = solution.variables[1],
             init_lr = solution.variables[2],
@@ -59,7 +60,7 @@ class Mammogram(FloatProblem):
             nb_epoch = 0,
             best_model = 'NOSAVE'
         )
-
+        K.clear_session()
         # weight_decay = solution.variables[0],
         # weight_decay2 = solution.variables[1],
         # init_lr = solution.variables[2],

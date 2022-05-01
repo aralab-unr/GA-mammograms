@@ -16,25 +16,26 @@ from genetic_algorithm import GeneticAlgorithm, DistributedGeneticAlgorithm
 import asyncssh
 import dask
 import dask.dataframe as df
+import tensorflow as tf
 
 import os
 
 # remove log files
 # tracks how many times GA fitness function has been invoked
-# if os.path.exists("logs_fitness_function_invoked.txt"):
-#     os.remove("logs_fitness_function_invoked.txt")
-#
-# # logs general logging comments
-# if os.path.exists("logs_common.txt"):
-#     os.remove("logs_common.txt")
-#
-# # logs reward for each run of fitness function
-# if os.path.exists("reward.txt"):
-#     os.remove("reward.txt")
-#
-# # logs reward for each run of fitness function
-# if os.path.exists("generation_stats.txt"):
-#     os.remove("generation_stats.txt")
+if os.path.exists("logs_fitness_function_invoked.txt"):
+    os.remove("logs_fitness_function_invoked.txt")
+
+# logs general logging comments
+if os.path.exists("logs_common.txt"):
+    os.remove("logs_common.txt")
+
+# logs reward for each run of fitness function
+if os.path.exists("reward.txt"):
+    os.remove("reward.txt")
+
+# logs reward for each run of fitness function
+if os.path.exists("generation_stats.txt"):
+    os.remove("generation_stats.txt")
 
 if __name__ == "__main__":
     problem = Mammogram(6)
@@ -43,6 +44,7 @@ if __name__ == "__main__":
     #     ["192.168.0.124", "localhost", "192.168.0.124"],
     #     connect_options={"username": "adarshsehgal", "known_hosts": None})
     # client=Client(cluster)
+    tf.keras.backend.clear_session()
     algorithm = GeneticAlgorithm(
         problem=problem,
         population_size=50,
@@ -50,8 +52,7 @@ if __name__ == "__main__":
         selection=BinaryTournamentSelection(),
         mutation=PolynomialMutation(probability=1.0 / problem.number_of_variables, distribution_index=20),
         crossover=SBXCrossover(probability=1.0, distribution_index=20),
-        termination_criterion=StoppingByEvaluations(max_evaluations=4000),
-        population_evaluator=SparkEvaluator(processes=2)
+        termination_criterion=StoppingByEvaluations(max_evaluations=4000)
     )
 
     # setup Dask client
