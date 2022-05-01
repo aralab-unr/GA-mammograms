@@ -45,8 +45,8 @@ class Mammogram(FloatProblem):
             block_type='resnet',
             batch_size=2, #tweak this parameter for better performance
             all_layer_epochs=10, #tweak this parameter for better performance
-            load_val_ram=False,
-            load_train_ram=False,
+            load_val_ram=True,
+            load_train_ram=True,
             weight_decay = solution.variables[0],
             weight_decay2 = solution.variables[1],
             init_lr = solution.variables[2],

@@ -60,7 +60,6 @@ class SparkEvaluator(Evaluator[S]):
         self.spark_conf = SparkConf()\
             .setAppName("jmetalpy") \
             .set("spark.task.cpus", "12") \
-            .set("spark.default.parallelism", "4") \
             .set("spark.acls.enable", "false") \
             .set("spark.modify.acls", "adarshsehgal") \
             .set("spark.executor.memory", "20g") \
