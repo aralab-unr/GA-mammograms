@@ -76,6 +76,7 @@ sudo ufw allow ssh
 pip3 install asyncssh
 
 17. install nvidia drivers
+https://towardsdatascience.com/deep-learning-gpu-installation-on-ubuntu-18-4-9b12230a1d31
 sudo apt-get install python3-apt
 
 cd /usr/lib/python3/dist-packages
@@ -86,12 +87,29 @@ sudo ubuntu-drivers autoinstall
 sudo apt install intel-gpu-tools
 
 17. install cuda
+https://towardsdatascience.com/deep-learning-gpu-installation-on-ubuntu-18-4-9b12230a1d31
+IMP: install cuda 10.0
+https://developer.nvidia.com/cuda-10.0-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=runfilelocal
+sudo sh cuda_10.0.130_410.48_linux.run
+
+--extras
 wget https://developer.download.nvidia.com/compute/cuda/11.6.2/local_installers/cuda_11.6.2_510.47.03_linux.run
 sudo sh cuda_11.6.2_510.47.03_linux.run --toolkit --silent --override
 
 17. install CudaDNN
+IMP: install version 7.4 corresponding to tensorflow 1.15.5
 https://towardsdatascience.com/deep-learning-gpu-installation-on-ubuntu-18-4-9b12230a1d31
 sudo apt-get install libcupti-dev
+
+17. include path in ~/.bashrc
+if [ -z $LD_LIBRARY_PATH ]; then
+  LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.0/lib64
+else
+  LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.0/lib64
+fi
+export LD_LIBRARY_PATH
+
+source ~/.bashrc
 
 17. install jupyter-server-proxy
 pip3 install jupyter-server-proxy
@@ -199,6 +217,9 @@ pip3 install gpustat
 
 31. monitor gpu utilization
 sudo intel_gpu_top
+
+32. install cuda toolkit
+sudo apt install nvidia-cuda-toolkit
 
 =========================================================================================
 Some IMPORTANT points:
