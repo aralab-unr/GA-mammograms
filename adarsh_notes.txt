@@ -75,6 +75,15 @@ sudo ufw allow ssh
 16. install asyncssh
 pip3 install asyncssh
 
+17. install nvidia drivers
+sudo apt-get install python3-apt
+
+cd /usr/lib/python3/dist-packages
+sudo cp apt_pkg.cpython-36m-x86_64-linux-gnu.so apt_pkg.so
+
+sudo apt-get install ubuntu-drivers-common
+sudo ubuntu-drivers autoinstall
+
 17. install jupyter-server-proxy
 pip3 install jupyter-server-proxy
 
