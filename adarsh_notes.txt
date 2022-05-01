@@ -234,6 +234,9 @@ export SPARK_RAPIDS_DIR=/home/adarshsehgal/workspace/GA-mammograms/ddsm_train
 export SPARK_CUDF_JAR=${SPARK_RAPIDS_DIR}/cudf-0.14-cuda10-1.jar
 export SPARK_RAPIDS_PLUGIN_JAR=${SPARK_RAPIDS_DIR}/rapids-4-spark_2.12-0.1.0.jar
 
+34. update spark-env.sh
+add discovery script path
+SPARK_WORKER_OPTS="-Dspark.worker.resource.gpu.amount=6 -Dspark.worker.resource.gpu.discoveryScript=/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh"
 =========================================================================================
 Some IMPORTANT points:
 1. MAIN SCRIPT FILE: train_image_clf_inbreast.sh

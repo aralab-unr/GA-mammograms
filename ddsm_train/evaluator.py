@@ -59,15 +59,25 @@ class SparkEvaluator(Evaluator[S]):
     def __init__(self, processes: int = 8):
         self.spark_conf = SparkConf()\
             .setAppName("jmetalpy") \
-            .set("spark.task.resource.gpu.amount", "1") \
+            .set("spark.task.resource.gpu.amount", "0.25") \
+            .set("spark.rapids.memory.pinnedPool.size", "2g") \
+            .set("spark.locality.wait", "0s") \
+            .set("spark.sql.files.maxPartitionBytes", "512m") \
+            .set("spark.plugins", "com.nvidia.spark.SQLPlugin") \
+            .set("spark.executor.resource.gpu.amount", "1") \
+            .set("spark.worker.resource.gpu.amount", "6") \
+            .set("spark.executor.cores", "4") \
+            .set("spark.task.cpus", "12") \
             .set("spark.default.parallelism", processes) \
             .set("spark.acls.enable", "false") \
             .set("spark.modify.acls", "adarshsehgal") \
+            .set("spark.rapids.sql.concurrentGpuTasks", "1") \
             .set("spark.executor.memory", "8g") \
+            .set("spark.driver.memory", "2g") \
             .set("spark.executor.resource.gpu.discoveryScript", "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
             .set("spark.driver.resource.gpu.discoveryScript", "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
-            .set("spark.jars", '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar') \
-            .set("spark.jars", '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
+            .set("spark.executor.extraClassPath", '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar:/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
+            .set("spark.driver.extraClassPath", '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar:/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
             .setMaster("spark://192.168.0.152:7077")
 
             # .set("spark.task.cpus", "12") \
