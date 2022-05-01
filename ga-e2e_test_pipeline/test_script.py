@@ -1,9 +1,9 @@
 import image_clf_train
 
-TRAIN_DIR = "Inbreast/train"
-VAL_DIR = "Inbreast/val"
-TEST_DIR = "Inbreast/test"
-BEST_MODEL = "ddsm_vgg16_s10_[512-512-1024]x2_hybrid.h5"
+TRAIN_DIR = "/content/drive/MyDrive/GA-mammograms/test_run_images/train"
+VAL_DIR = "/content/drive/MyDrive/GA-mammograms/test_run_images/val"
+TEST_DIR = "/content/drive/MyDrive/GA-mammograms/test_run_images/test"
+BEST_MODEL = "/content/drive/MyDrive/GA-mammograms/ddsm_train/ddsm_vgg16_s10_[512-512-1024]x2_hybrid.h5"
 
 # original values run
 image_clf_train.run(
@@ -17,9 +17,9 @@ image_clf_train.run(
             patch_net='resnet50',
             block_type='resnet',
             batch_size=2, #tweak this parameter for better performance
-            all_layer_epochs=10, #tweak this parameter for better performance
-            load_val_ram=False,
-            load_train_ram=False,
+            all_layer_epochs=100, #tweak this parameter for better performance
+            load_val_ram=True,
+            load_train_ram=True,
             weight_decay = 0.0001,
             weight_decay2 = 0.0001,
             init_lr = 0.01,
@@ -30,7 +30,7 @@ image_clf_train.run(
             es_patience=10,
             augmentation=False,
             nb_epoch = 0,
-            best_model = 'NOSAVE'
+            best_model = 'best_model.h5'
 )
 
 # GA values run
@@ -45,18 +45,18 @@ image_clf_train.run(
 #             patch_net='resnet50',
 #             block_type='resnet',
 #             batch_size=2, #tweak this parameter for better performance
-#             all_layer_epochs=10, #tweak this parameter for better performance
-#             load_val_ram=False,
-#             load_train_ram=False,
-#             weight_decay = 0.269,
-#             weight_decay2 = 0.225,
-#             init_lr = 0.0008,
-#             all_layer_multiplier = 0.476,
-#             pos_cls_weight = 0.948,
-#             neg_cls_weight = 0.319,
+#             all_layer_epochs=100, #tweak this parameter for better performance
+#             load_val_ram=True,
+#             load_train_ram=True,
+#             weight_decay = 0.302,
+#             weight_decay2 = 0.693,
+#             init_lr = 0.043,
+#             all_layer_multiplier = 0.114,
+#             pos_cls_weight = 0.227,
+#             neg_cls_weight = 0.708,
 #             lr_patience=2,
 #             es_patience=10,
 #             augmentation=False,
 #             nb_epoch = 0,
-#             best_model = 'NOSAVE'
+#             best_model = 'best_model.h5'
 # )

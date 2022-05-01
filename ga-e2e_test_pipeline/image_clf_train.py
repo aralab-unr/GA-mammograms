@@ -130,7 +130,7 @@ def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
         batch_size=batch_size, shuffle=False)
     sys.stdout.flush()
     if load_val_ram:
-        print("Loading validation set into RAM.")
+        print("Loading validation set into RAM.",)
         sys.stdout.flush()
         validation_set = load_dat_ram(validation_set, validation_set.nb_sample)
         print("Done."); sys.stdout.flush()
@@ -156,27 +156,27 @@ def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
             best_model, validation_set, test_samples=val_samples)
     # import pdb; pdb.set_trace()
     image_model, loss_hist, acc_hist = do_2stage_training(
-        image_model, org_model, train_generator, validation_set, validation_steps, 
+        image_model, org_model, train_generator, validation_set, validation_steps,
         best_model, train_batches, top_layer_nb, nb_epoch=nb_epoch,
         all_layer_epochs=all_layer_epochs,
-        optim=optim, init_lr=init_lr, 
+        optim=optim, init_lr=init_lr,
         all_layer_multiplier=all_layer_multiplier,
-        es_patience=es_patience, lr_patience=lr_patience, 
-        auto_batch_balance=auto_batch_balance, 
+        es_patience=es_patience, lr_patience=lr_patience,
+        auto_batch_balance=auto_batch_balance,
         pos_cls_weight=pos_cls_weight, neg_cls_weight=neg_cls_weight,
         nb_worker=nb_worker, auc_checkpointer=auc_checkpointer,
         weight_decay=weight_decay, hidden_dropout=hidden_dropout,
         weight_decay2=weight_decay2, hidden_dropout2=hidden_dropout2,)
 
-    # return best validation accuracy for GA
-    min_loss_locs, = np.where(loss_hist == min(loss_hist))
-    best_val_accuracy = acc_hist[min_loss_locs[0]]
-    best_val_loss = loss_hist[min_loss_locs[0]]
-
-    print("\n==== Training summary ====")
-    print("Minimum val loss achieved at epoch:", min_loss_locs[0] + 1)
-    print("Best val loss:", best_val_loss)
-    print("Best val accuracy:", best_val_accuracy)
+    # Training report.
+    if len(loss_hist) > 0:
+        min_loss_locs, = np.where(loss_hist == min(loss_hist))
+        best_val_loss = loss_hist[min_loss_locs[0]]
+        best_val_accuracy = acc_hist[min_loss_locs[0]]
+        print("\n==== Training summary ====")
+        print("Minimum val loss achieved at epoch:", min_loss_locs[0] + 1)
+        print("Best val loss:", best_val_loss)
+        print("Best val accuracy:", best_val_accuracy)
 
     if final_model != "NOSAVE":
         image_model.save(final_model)
@@ -204,6 +204,8 @@ def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
     #     pickle_safe=True if nb_worker > 1 else False)
     test_auc = DMAucModelCheckpoint.calc_test_auc(
         test_generator, image_model, test_samples=test_samples)
+    with open('reward.txt', 'w') as output:
+        output.write(str(test_auc))
     print("AUROC on test set:", test_auc)
 
 
