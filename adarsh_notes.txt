@@ -83,6 +83,15 @@ sudo cp apt_pkg.cpython-36m-x86_64-linux-gnu.so apt_pkg.so
 
 sudo apt-get install ubuntu-drivers-common
 sudo ubuntu-drivers autoinstall
+sudo apt install intel-gpu-tools
+
+17. install cuda
+wget https://developer.download.nvidia.com/compute/cuda/11.6.2/local_installers/cuda_11.6.2_510.47.03_linux.run
+sudo sh cuda_11.6.2_510.47.03_linux.run --toolkit --silent --override
+
+17. install CudaDNN
+https://towardsdatascience.com/deep-learning-gpu-installation-on-ubuntu-18-4-9b12230a1d31
+sudo apt-get install libcupti-dev
 
 17. install jupyter-server-proxy
 pip3 install jupyter-server-proxy
@@ -184,6 +193,12 @@ SPARK_MASTER_HOST=192.168.0.152
 
 29. edit /etc/hosts
 remove 12.0.1.1 entries from both master and worker
+
+30. install gpustat
+pip3 install gpustat
+
+31. monitor gpu utilization
+sudo intel_gpu_top
 
 =========================================================================================
 Some IMPORTANT points:
