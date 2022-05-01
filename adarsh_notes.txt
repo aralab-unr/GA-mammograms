@@ -473,12 +473,17 @@ https://linuxize.com/post/how-to-install-python-3-7-on-ubuntu-18-04/
 ==================================================================
 KNOWN ERRORS
 
+1.
 --File "/usr/lib/python3/dist-packages/toolz/functoolz.py", line 501
     f.__name__ for f in reversed((self.first,) + self.funcs),
     ^
 SyntaxError: Generator expression must be parenthesized
 
 SOLUTION: use functoolz.py file in ddsm_train folder
+
+2. software & update not opening
+sudo apt autoremove gnome-software && sudo apt install gnome-software
+sudo apt update && sudo apt dist-upgrade -f
 
 
 
