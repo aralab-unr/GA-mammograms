@@ -66,6 +66,8 @@ class SparkEvaluator(Evaluator[S]):
             .set("spark.executor.memory", "8g") \
             .set("spark.executor.resource.gpu.discoveryScript", "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
             .set("spark.driver.resource.gpu.discoveryScript", "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
+            .set("spark.jars", '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar') \
+            .set("spark.jars", '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
             .setMaster("spark://192.168.0.152:7077")
 
             # .set("spark.task.cpus", "12") \
