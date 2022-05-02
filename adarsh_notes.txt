@@ -108,6 +108,15 @@ $ sudo cp cuda/include/cudnn.h /usr/local/cuda/include
 $ sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
 $ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
 
+===using cuda 10.0 and 10.1 together
+sudo cp /usr/local/cuda-10.0/lib64/libcudart.so.10.0 /usr/local/cuda/lib64
+sudo cp /usr/local/cuda-10.0/lib64/libcublas.so.10.0 /usr/local/cuda/lib64
+sudo cp /usr/local/cuda-10.0/lib64/libcufft.so.10.0 /usr/local/cuda/lib64
+sudo cp /usr/local/cuda-10.0/lib64/libcurand.so.10.0 /usr/local/cuda/lib64
+sudo cp /usr/local/cuda-10.0/lib64/libcusolver.so.10.0 /usr/local/cuda/lib64
+sudo cp /usr/local/cuda-10.0/lib64/libcusparse.so.10.0 /usr/local/cuda/lib64
+sudo cp /usr/local/cuda-10.0/lib64/libcusparse.so.10.0 /usr/local/cuda/lib64
+
 17. include path in ~/.bashrc
 if [ -z $LD_LIBRARY_PATH ]; then
   LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda-10.0/lib64

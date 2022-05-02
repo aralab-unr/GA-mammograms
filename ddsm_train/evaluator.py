@@ -2,6 +2,7 @@ import functools
 from abc import ABC, abstractmethod
 from multiprocessing.pool import Pool, ThreadPool
 from typing import Generic, List, TypeVar
+from keras import backend as K
 
 try:
     import dask
@@ -66,7 +67,8 @@ class SparkEvaluator(Evaluator[S]):
             .set("spark.executor.resource.gpu.amount", "1") \
             .set("spark.worker.resource.gpu.amount", "1") \
             .set("spark.driver.resource.gpu.amount", "1") \
-            .set("spark.rapids.memory.gpu.allocFraction", "0.5") \
+            .set("spark.task.cpus", "10") \
+            .set("spark.rapids.memory.gpu.allocFraction", "0.7") \
             .set("spark.sql.sources.useV1SourceList", "") \
             .set("spark.default.parallelism", processes) \
             .set("spark.acls.enable", "false") \

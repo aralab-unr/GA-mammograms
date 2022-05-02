@@ -6,6 +6,7 @@ from jmetal.core.problem import BinaryProblem, FloatProblem, Problem
 from jmetal.core.solution import BinarySolution, FloatSolution
 from keras import backend as K
 import image_clf_train
+import os
 
 timesEvaluated = 0
 bestauc = -1
@@ -58,8 +59,10 @@ class Mammogram(FloatProblem):
             es_patience=10,
             augmentation=False,
             nb_epoch = 0,
-            best_model = 'NOSAVE'
+            best_model = '/tmp/checkpoint.h5'
         )
+
+        os.remove('/tmp/checkpoint.h5')
         K.clear_session()
         # weight_decay = solution.variables[0],
         # weight_decay2 = solution.variables[1],
