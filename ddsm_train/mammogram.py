@@ -40,13 +40,13 @@ class Mammogram(FloatProblem):
             val_dir=VAL_DIR,
             test_dir=TEST_DIR,
             resume_from=BEST_MODEL,
-            img_size=[1152, 896],
+            img_size=[224, 224],
             rescale_factor=0.003891,
             featurewise_mean=44.33,
             patch_net='resnet50',
             block_type='resnet',
             batch_size=2, #tweak this parameter for better performance
-            all_layer_epochs=10, #tweak this parameter for better performance
+            all_layer_epochs=20, #tweak this parameter for better performance
             load_val_ram=False,
             load_train_ram=False,
             weight_decay = solution.variables[0],

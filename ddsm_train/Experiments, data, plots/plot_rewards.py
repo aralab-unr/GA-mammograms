@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 aucArray=[]
 timesFitnessFuncEvaluated=[]
-population_size = 50
+population_size = 70
 generation_best = []
 generation_average = []
 generations_index_list = []

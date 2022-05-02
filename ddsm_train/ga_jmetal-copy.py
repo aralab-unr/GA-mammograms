@@ -47,8 +47,8 @@ if __name__ == "__main__":
     tf.keras.backend.clear_session()
     algorithm = GeneticAlgorithm(
         problem=problem,
-        population_size=50,
-        offspring_population_size=50,
+        population_size=70,
+        offspring_population_size=70,
         selection=BinaryTournamentSelection(),
         mutation=PolynomialMutation(probability=1.0 / problem.number_of_variables, distribution_index=20),
         crossover=SBXCrossover(probability=1.0, distribution_index=20),
