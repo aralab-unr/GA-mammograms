@@ -59,22 +59,19 @@ class SparkEvaluator(Evaluator[S]):
     def __init__(self, processes: int = 8):
         self.spark_conf = SparkConf()\
             .setAppName("jmetalpy") \
-            .set("spark.rapids.memory.pinnedPool.size", "2g") \
             .set("spark.locality.wait", "0s") \
-            .set("spark.sql.files.maxPartitionBytes", "512m") \
             .set("spark.plugins", "com.nvidia.spark.SQLPlugin") \
             .set("spark.rapids.sql.enable", "true") \
-            .set("spark.task.resource.gpu.amount", "0.25") \
+            .set("spark.task.resource.gpu.amount", "1") \
             .set("spark.executor.resource.gpu.amount", "1") \
             .set("spark.worker.resource.gpu.amount", "1") \
             .set("spark.driver.resource.gpu.amount", "1") \
+            .set("spark.rapids.memory.gpu.allocFraction", "0.5") \
             .set("spark.sql.sources.useV1SourceList", "") \
             .set("spark.default.parallelism", processes) \
             .set("spark.acls.enable", "false") \
             .set("spark.modify.acls", "adarshsehgal") \
             .set("spark.rapids.sql.concurrentGpuTasks", "1") \
-            .set("spark.executor.memory", "8g") \
-            .set("spark.driver.memory", "2g") \
             .set("spark.executor.resource.gpu.discoveryScript", "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
             .set("spark.driver.resource.gpu.discoveryScript", "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
             .set("spark.worker.resource.gpu.discoveryScript",
@@ -120,6 +117,8 @@ class SparkEvaluator(Evaluator[S]):
                  '/usr/local/cuda-10.0/lib:') \
             .setMaster("spark://192.168.0.152:7077")
 
+            # .set("spark.eventLog.enabled", "true") \
+            # .set("spark.eventLog.dir", "local_log_dir") \
             # .set("spark.task.cpus", "12") \
             # .set("spark.driver.allowMultipleContexts", "true") \
             # .set("spark.driver.maxResultSize", "0") \
@@ -134,9 +133,9 @@ class SparkEvaluator(Evaluator[S]):
         self.spark_context.addPyFile('/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/jMetalPy.zip')
         # self.spark_context.addPyFile('/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/xgboost4j_3.0-1.4.2-0.3.0.jar')
 
-        self.spark_context.setCheckpointDir("spark_checkpoint_location")
-        logger = self.spark_context._jvm.org.apache.log4j
-        logger.LogManager.getLogger("org").setLevel(logger.Level.WARN)
+        # self.spark_context.setCheckpointDir("spark_checkpoint_location")
+        # logger = self.spark_context._jvm.org.apache.log4j
+        # logger.LogManager.getLogger("org").setLevel(logger.Level.WARN)
 
     def evaluate(self, solution_list: List[S], problem: Problem) -> List[S]:
         # spark_context = SparkContext(conf=self.spark_conf)
