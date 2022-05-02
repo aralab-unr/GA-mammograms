@@ -40,7 +40,7 @@ class Mammogram(FloatProblem):
             val_dir=VAL_DIR,
             test_dir=TEST_DIR,
             resume_from=BEST_MODEL,
-            img_size=[224, 224],
+            img_size=[1152, 896],
             rescale_factor=0.003891,
             featurewise_mean=44.33,
             patch_net='resnet50',
