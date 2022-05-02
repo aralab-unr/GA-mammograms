@@ -79,16 +79,45 @@ class SparkEvaluator(Evaluator[S]):
             .set("spark.driver.resource.gpu.discoveryScript", "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
             .set("spark.worker.resource.gpu.discoveryScript",
                  "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
-            .set("spark.executor.extraClassPath", '/usr/local/cuda/lib64:'
-                                                  '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar:'
-                                                  '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
-            .set("spark.driver.extraClassPath", '/usr/local/cuda/lib64:'
-                                                '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar:'
-                                                '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
-            .set("spark.worker.extraClassPath",
-                 '/usr/local/cuda/lib64:'
+            .set("spark.executor.extraClassPath",   '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar:'
+                                                    '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
+            .set("spark.executor.extraLibraryPath", '/usr/local/cuda/lib64:'
+                                                  '/usr/local/cuda/targets/x86_64-linux/lib:'
+                                                  '/usr/local/cuda/extras/CUPTI/lib64:'
+                                                  '/usr/local/cuda/compat/lib:'
+                                                  '/usr/local/cuda/lib:'
+                                                  '/usr/local/cuda-10.0/lib64:'
+                                                  '/usr/local/cuda-10.0/targets/x86_64-linux/lib:'
+                                                  '/usr/local/cuda-10.0/extras/CUPTI/lib64:'
+                                                  '/usr/local/cuda-10.0/compat/lib:'
+                                                  '/usr/local/cuda-10.0/lib:') \
+            .set("spark.driver.extraClassPath",
                  '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar:'
                  '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
+            .set("spark.driver.extraLibraryPath", '/usr/local/cuda/lib64:'
+                                                '/usr/local/cuda/targets/x86_64-linux/lib:'
+                                                  '/usr/local/cuda/extras/CUPTI/lib64:'
+                                                  '/usr/local/cuda/compat/lib:'
+                                                  '/usr/local/cuda/lib:'
+                                                  '/usr/local/cuda-10.0/lib64:'
+                                                  '/usr/local/cuda-10.0/targets/x86_64-linux/lib:'
+                                                  '/usr/local/cuda-10.0/extras/CUPTI/lib64:'
+                                                  '/usr/local/cuda-10.0/compat/lib:'
+                                                  '/usr/local/cuda-10.0/lib:') \
+            .set("spark.worker.extraClassPath",
+                 '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/cudf-0.14-cuda10-1.jar:'
+                 '/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/rapids-4-spark_2.12-0.1.0.jar') \
+            .set("spark.worker.extraLibraryPath",
+                 '/usr/local/cuda/lib64:'
+                 '/usr/local/cuda/targets/x86_64-linux/lib:'
+                 '/usr/local/cuda/extras/CUPTI/lib64:'
+                 '/usr/local/cuda/compat/lib:'
+                 '/usr/local/cuda/lib:'
+                 '/usr/local/cuda-10.0/lib64:'
+                 '/usr/local/cuda-10.0/targets/x86_64-linux/lib:'
+                 '/usr/local/cuda-10.0/extras/CUPTI/lib64:'
+                 '/usr/local/cuda-10.0/compat/lib:'
+                 '/usr/local/cuda-10.0/lib:') \
             .setMaster("spark://192.168.0.152:7077")
 
             # .set("spark.task.cpus", "12") \
