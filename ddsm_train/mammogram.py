@@ -7,6 +7,7 @@ from jmetal.core.solution import BinarySolution, FloatSolution
 from keras import backend as K
 import image_clf_train
 import os
+import sys
 
 timesEvaluated = 0
 bestauc = -1
@@ -77,7 +78,6 @@ class Mammogram(FloatProblem):
         # all_layer_multiplier = 0.1,
         # pos_cls_weight = 1,
         # neg_cls_weight = 1,
-
         print(total)
 
         global timesEvaluated

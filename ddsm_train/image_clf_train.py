@@ -11,6 +11,8 @@ from dm_keras_ext import (
 from dm_resnet import add_top_layers, bottleneck_org
 from dm_multi_gpu import make_parallel
 import warnings
+import sys
+
 # import exceptions
 # warnings.filterwarnings('ignore', category=exceptions.UserWarning)
 
@@ -168,13 +170,10 @@ def run(train_dir, val_dir, test_dir, patch_model_state=None, resume_from=None,
         weight_decay=weight_decay, hidden_dropout=hidden_dropout,
         weight_decay2=weight_decay2, hidden_dropout2=hidden_dropout2,)
 
-    # Training report.
-    if len(loss_hist) > 0:
-        return np.mean(acc_hist)
 
-
-    else:
-        return 0
+    print('================ubuntu================='); sys.stdout.flush()
+    print(acc_hist)
+    return np.mean(acc_hist)
 
     if final_model != "NOSAVE":
         image_model.save(final_model)
