@@ -67,13 +67,17 @@ class SparkEvaluator(Evaluator[S]):
             .set("spark.executor.resource.gpu.amount", "1") \
             .set("spark.worker.resource.gpu.amount", "1") \
             .set("spark.driver.resource.gpu.amount", "1") \
-            .set("spark.task.cpus", "10") \
-            .set("spark.rapids.memory.gpu.allocFraction", "0.7") \
+            .set("spark.task.cpus", "1") \
+            .set("spark.executor.memory", "4G") \
+            .set("spark.executor.cores", "8") \
+            .set("spark.rapids.memory.gpu.allocFraction", "0.5") \
             .set("spark.sql.sources.useV1SourceList", "") \
             .set("spark.default.parallelism", processes) \
             .set("spark.acls.enable", "false") \
             .set("spark.modify.acls", "adarshsehgal") \
             .set("spark.rapids.sql.concurrentGpuTasks", "1") \
+            .set("spark.rapids.memory.pinnedPool.size", "1g") \
+            .set("spark.sql.files.maxPartitionBytes", "512m") \
             .set("spark.executor.resource.gpu.discoveryScript", "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
             .set("spark.driver.resource.gpu.discoveryScript", "/home/adarshsehgal/workspace/GA-mammograms/ddsm_train/getGpusResources.sh") \
             .set("spark.worker.resource.gpu.discoveryScript",
