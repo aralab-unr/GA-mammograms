@@ -19,7 +19,7 @@ class Mammogram(FloatProblem):
         self.number_of_constraints = 0
 
         self.obj_directions = [self.MAXIMIZE]
-        self.obj_labels = ["f(x)"]
+        self.obj_labels = ["AUC"]
 
         self.lower_bound = [0 for _ in range(number_of_variables)]
         self.upper_bound = [1 for _ in range(number_of_variables)]
