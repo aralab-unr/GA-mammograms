@@ -145,7 +145,7 @@ class EvolutionaryAlgorithm(Algorithm[S, R], ABC):
     def step(self):
         solution_array = []
         for solution in self.solutions:
-            solution_array.append(solution.objectives[0])
+            solution_array.append(-1.0 * solution.objectives[0])
         solution_array = np.array(solution_array)
         with open('generation_stats.txt', 'a') as output:
             # save as bestAUC, avgAUC

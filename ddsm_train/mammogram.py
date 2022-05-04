@@ -121,7 +121,7 @@ class Mammogram(FloatProblem):
 
         print("Best auc so far : " + str(bestauc))
 
-        solution.objectives[0] = total
+        solution.objectives[0] = -1.0 * total
 
         return solution
 
