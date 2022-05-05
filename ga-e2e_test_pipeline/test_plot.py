@@ -29,7 +29,7 @@ plt.title("AUC over GA generations")
 plt.plot(generations, best_aucs, label='Best fitness')
 plt.plot(generations, avg_aucs, label='Average fitness')
 plt.xlabel("Generations")
-plt.ylabel("Fitness value")
+plt.ylabel("Fitness value (AUC)")
 plt.legend()
 
 plt.show()

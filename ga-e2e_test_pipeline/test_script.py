@@ -20,18 +20,20 @@ image_clf_train.run(
             all_layer_epochs=100, #tweak this parameter for better performance
             load_val_ram=True,
             load_train_ram=True,
-            weight_decay = 0.0001,
-            weight_decay2 = 0.0001,
-            init_lr = 0.01,
-            all_layer_multiplier = 0.1,
-            pos_cls_weight = 1.0,
-            neg_cls_weight = 1.0,
+            weight_decay=0.7974239097749569,
+            weight_decay2=0.3799966765464995,
+            init_lr=0.9584088858260257,
+            all_layer_multiplier=0.8445024070954119,
+            pos_cls_weight=0.16176869143976572,
+            neg_cls_weight=0.5340078942709612,
             lr_patience=2,
             es_patience=10,
             augmentation=False,
             nb_epoch = 0,
             best_model = 'best_model.h5'
 )
+
+os.remove('best_model.h5')
 
 # GA values run
 # image_clf_train.run(
